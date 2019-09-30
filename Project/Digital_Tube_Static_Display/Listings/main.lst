@@ -1,0 +1,103 @@
+C51 COMPILER V9.57.0.0   MAIN                                                              09/30/2019 10:51:43 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: E:\keil\install\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings
+                    -\main.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          /**********************实验测试程序************************
+   2          *  平台：Keil U5 + STC11F04E
+   3          *  名称：数码管实验
+   4          *  日期：2019-9-29
+   5          *  姓名：ZhangHJ
+   6          *  说明：数码管静态显示
+   7          ***********************************************************/
+   8          #include "reg52.h"
+   9          #define uint unsigned int
+  10          #define uchar unsigned char
+  11          
+  12          sbit DAT=P3^0;
+  13          sbit CLK=P3^1;
+  14          sbit DP=P3^7;
+  15          
+  16          // 数码管段选数组
+  17          uchar code tab[]={0x81,0xD7,0xC8,0xC2,0x96,0xA2,0xA0,0xC7,0x80,0x82};
+  18          
+  19          /**********************************************************
+  20          *  函数名称：低精度延时函数
+  21          *  日期：2019-9-7
+  22          *  姓名：ZhangHJ
+  23          *  说明：嵌套循环延时
+  24          ***********************************************************/
+  25          void delay_ms(unsigned int mstime)
+  26          {
+  27   1        int i,j;
+  28   1        for(i=mstime; i>=0; i--)
+  29   1          for(j=112; j>=0; j--);
+  30   1      }
+  31          
+  32          
+  33          /**********************************************************
+  34          *  函数名称：74HC164发送Byte函数
+  35          *  日期：2019-9-29
+  36          *  姓名：ZhangHJ
+  37          *  说明：74HC164移位寄存器输入一字节数据发给寄存器
+  38          ***********************************************************/
+  39          void SendByte_74HC164(uchar byte)
+  40          {
+  41   1        uchar num,c;
+  42   1        num=tab[byte];
+  43   1        for(c=0; c<8; c++)
+  44   1        {
+  45   2          DAT=num&0x01;   // P3^0 --> 0000 000x
+  46   2          CLK=0;          // 制造一个上升沿
+  47   2          CLK=1;
+  48   2          num>>=1;        // 将数据发送到寄存器
+  49   2        }
+  50   1      }
+  51          
+  52          
+  53            
+  54          void main()
+C51 COMPILER V9.57.0.0   MAIN                                                              09/30/2019 10:51:43 PAGE 2   
+
+  55          {
+  56   1        int num;
+  57   1        P1 &= 0X0f;       // 位选
+  58   1        //DP = 0;         // 小数点
+  59   1        while(1)
+  60   1        {
+  61   2          for(num=0; num<10; num++)
+  62   2          {
+  63   3            delay_ms(50);
+  64   3            SendByte_74HC164(num);
+  65   3            delay_ms(2000);
+  66   3          }
+  67   2        }
+  68   1      }
+  69          
+  70          
+  71          
+  72          
+  73          
+  74          
+  75          
+  76          
+  77          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     94    ----
+   CONSTANT SIZE    =     10    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

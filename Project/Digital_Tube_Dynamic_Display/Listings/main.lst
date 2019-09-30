@@ -1,0 +1,198 @@
+C51 COMPILER V9.57.0.0   MAIN                                                              09/30/2019 22:14:13 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: E:\keil\install\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings
+                    -\main.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          /**********************实验测试程序************************
+   2          *  平台：Keil U5 + STC11F04E
+   3          *  名称：数码管实验
+   4          *  日期：2019-9-30
+   5          *  姓名：ZhangHJ
+   6          *  说明：数码管静态显示
+   7          ***********************************************************/
+   8          #include <reg52.h>
+   9          #define uint unsigned int
+  10          #define uchar unsigned char
+  11          #define DELAY_TIME 6
+  12          
+  13          sbit DAT=P3^0;      // 74HC164 数据输入
+  14          sbit CLK=P3^1;      // 74HC164 时钟输入
+  15          //sbit DP=P3^7;     // 小数点
+  16          //sbit DP1=P3^5;
+  17          sbit DPY0 = P1^0;   // 独立位选
+  18          sbit DPY1 = P1^1;
+  19          sbit DPY2 = P1^2;
+  20          sbit DPY3 = P1^3;
+  21          sbit KEY = P3^2;    // INT0 按键
+  22          
+  23          // 数码管段选数组 数字0~9和全灭
+  24          uchar code tab[]={0x81,0xD7,0xC8,0xC2,0x96,0xA2,0xA0,0xC7,0x80,0x82,0xff};
+  25          // 数码管位选数组 全灭和独立3~0
+  26          uchar code wei[]={0xf0,0xf8,0xf4,0xf2,0xf1};
+  27          
+  28          
+  29          
+  30          /**********************************************************
+  31          *  函数名称：低精度延时函数
+  32          *  日期：2019-9-7
+  33          *  姓名：ZhangHJ
+  34          *  说明：嵌套循环延时
+  35          ***********************************************************/
+  36          void delay_ms(unsigned int mstime)
+  37          {
+  38   1        int i,j;
+  39   1        for(i=mstime; i>=0; i--)
+  40   1          for(j=112; j>=0; j--);
+  41   1      }
+  42          
+  43          
+  44          
+  45          /**********************************************************
+  46          *  函数名称：74HC164发送Byte函数
+  47          *  日期：2019-9-29
+  48          *  姓名：ZhangHJ
+  49          *  说明：74HC164移位寄存器输入一字节数据发给寄存器
+  50          ***********************************************************/
+  51          void SendByte_74HC164(uchar byte)
+  52          {
+  53   1        uchar num,c;
+  54   1        num=tab[byte];
+C51 COMPILER V9.57.0.0   MAIN                                                              09/30/2019 22:14:13 PAGE 2   
+
+  55   1        for(c=0; c<8; c++)
+  56   1        {
+  57   2          DAT=num&0x01;   // P3^0 --> 0000 000x
+  58   2          CLK=0;          // 制造一个上升沿
+  59   2          CLK=1;
+  60   2          num>>=1;        // 将数据发送到寄存器
+  61   2        }
+  62   1      }
+  63          
+  64          
+  65          
+  66          /**********************************************************
+  67          *  函数名称：按位控制数码管动态显示函数
+  68          *  日期：2019-9-30
+  69          *  姓名：ZhangHJ
+  70          *  说明：实现4个数码管显示 4321 的效果
+  71          *        数码管引脚高电平有效,首先设置各位段选信号,然后给寄存器发送数据
+  72          *        延时一段时间实现数字显示,最后清除段选信号清屏.
+  73          ***********************************************************/
+  74          void test_light_bit()
+  75          {
+  76   1          DPY0 = 1;
+  77   1          DPY1 = 0;
+  78   1          DPY2 = 0;
+  79   1          DPY3 = 0;
+  80   1          SendByte_74HC164(1);
+  81   1          delay_ms(DELAY_TIME);
+  82   1          SendByte_74HC164(10);
+  83   1        
+  84   1          DPY0 = 0;
+  85   1          DPY1 = 1;
+  86   1          DPY2 = 0;
+  87   1          DPY3 = 0;
+  88   1          SendByte_74HC164(2);
+  89   1          delay_ms(DELAY_TIME);
+  90   1          SendByte_74HC164(10);
+  91   1        
+  92   1          DPY0 = 0;
+  93   1          DPY1 = 0;
+  94   1          DPY2 = 1;
+  95   1          DPY3 = 0;
+  96   1          SendByte_74HC164(3);
+  97   1          delay_ms(DELAY_TIME);
+  98   1          SendByte_74HC164(10);
+  99   1          
+ 100   1          DPY0 = 0;
+ 101   1          DPY1 = 0;
+ 102   1          DPY2 = 0;
+ 103   1          DPY3 = 1;
+ 104   1          SendByte_74HC164(4);
+ 105   1          delay_ms(DELAY_TIME);
+ 106   1          SendByte_74HC164(10);
+ 107   1      }
+ 108          
+ 109          
+ 110          
+ 111          /**********************************************************
+ 112          *  函数名称：按字节控制数码管动态显示函数
+ 113          *  日期：2019-9-30
+ 114          *  姓名：ZhangHJ
+ 115          *  说明：实现4个数码管显示 1234 的效果
+ 116          *        数码管引脚高电平有效,首先关闭位选信号,然后给寄存器发送数据(开启段选),
+C51 COMPILER V9.57.0.0   MAIN                                                              09/30/2019 22:14:13 PAGE 3   
+
+ 117          *        开启位选控制并延时一段时间以显示数字,最后关闭位选信号清屏.
+ 118          ***********************************************************/
+ 119          void test_light_byte()
+ 120          {
+ 121   1          P1 &= 0xf0;             // 关掉位选
+ 122   1          SendByte_74HC164(1);    // 开启段选
+ 123   1          P1 |= 0xf8;             // 开启位选
+ 124   1          delay_ms(DELAY_TIME);   // 延时显示
+ 125   1          P1 &= 0xf0;             // 关掉位选
+ 126   1          
+ 127   1          SendByte_74HC164(2);
+ 128   1          P1 |= 0xf4;
+ 129   1          delay_ms(DELAY_TIME);
+ 130   1          P1 &= 0xf0;
+ 131   1          
+ 132   1          SendByte_74HC164(3);
+ 133   1          P1 |= 0xf2;
+ 134   1          delay_ms(DELAY_TIME);
+ 135   1          P1 &= 0xf0;
+ 136   1      
+ 137   1          SendByte_74HC164(4);
+ 138   1          P1 |= 0xf1;
+ 139   1          delay_ms(DELAY_TIME);
+ 140   1      }
+ 141          
+ 142          
+ 143          
+ 144          //主函数功能：正常状态显示1234,按键INT0按下时显示4321
+ 145          void main()
+ 146          {
+ 147   1        while(1)
+ 148   1        {
+ 149   2          if(KEY == 0)
+ 150   2          {
+ 151   3            delay_ms(20);
+ 152   3            while(KEY == 0)       // INT0按键被按下
+ 153   3            {
+ 154   4              test_light_bit();   // 显示4321
+ 155   4            }
+ 156   3          }
+ 157   2          test_light_byte();      // 显示1234
+ 158   2        }
+ 159   1      }
+ 160          
+ 161          
+ 162          
+ 163          
+ 164          
+ 165          
+ 166          
+ 167          
+ 168          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    218    ----
+   CONSTANT SIZE    =     16    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+C51 COMPILER V9.57.0.0   MAIN                                                              09/30/2019 22:14:13 PAGE 4   
+
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
