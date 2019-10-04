@@ -8,7 +8,9 @@
 #include <reg52.h>
 #define uint unsigned int
 #define uchar unsigned char
-#define DELAY_TIME 6
+#define DELAY_TIME 10
+#define ON 0
+#define OFF 1
 
 sbit DAT=P3^0;			// 74HC164 数据输入
 sbit CLK=P3^1;			// 74HC164 时钟输入
@@ -73,34 +75,34 @@ void SendByte_74HC164(uchar byte)
 ***********************************************************/
 void test_light_bit()
 {
-		DPY0 = 1;
-		DPY1 = 0;
-		DPY2 = 0;
-		DPY3 = 0;
+		DPY0 = ON;
+		DPY1 = OFF;
+		DPY2 = OFF;
+		DPY3 = OFF;
 		SendByte_74HC164(1);
 		delay_ms(DELAY_TIME);
 		SendByte_74HC164(10);
 	
-		DPY0 = 0;
-		DPY1 = 1;
-		DPY2 = 0;
-		DPY3 = 0;
+		DPY0 = OFF;
+		DPY1 = ON;
+		DPY2 = OFF;
+		DPY3 = OFF;
 		SendByte_74HC164(2);
 		delay_ms(DELAY_TIME);
 		SendByte_74HC164(10);
 	
-		DPY0 = 0;
-		DPY1 = 0;
-		DPY2 = 1;
-		DPY3 = 0;
+		DPY0 = OFF;
+		DPY1 = OFF;
+		DPY2 = ON;
+		DPY3 = OFF;
 		SendByte_74HC164(3);
 		delay_ms(DELAY_TIME);
 		SendByte_74HC164(10);
 		
-		DPY0 = 0;
-		DPY1 = 0;
-		DPY2 = 0;
-		DPY3 = 1;
+		DPY0 = OFF;
+		DPY1 = OFF;
+		DPY2 = OFF;
+		DPY3 = ON;
 		SendByte_74HC164(4);
 		delay_ms(DELAY_TIME);
 		SendByte_74HC164(10);
@@ -113,29 +115,29 @@ void test_light_bit()
 *  日期：2019-9-30
 *  姓名：ZhangHJ
 *  说明：实现4个数码管显示 1234 的效果
-* 			 数码管引脚高电平有效,首先关闭位选信号,然后给寄存器发送数据(开启段选),
+* 			 数码管引脚低电平有效,首先关闭位选信号,然后给寄存器发送数据(开启段选),
 *				 开启位选控制并延时一段时间以显示数字,最后关闭位选信号清屏.
 ***********************************************************/
 void test_light_byte()
 {
-		P1 &= 0xf0;							// 关掉位选
+		P1 |= 0x0f;							// 关掉位选
 		SendByte_74HC164(1);		// 开启段选
-		P1 |= 0xf8;							// 开启位选
+		P1 &= 0xf7;							// 开启位选
 		delay_ms(DELAY_TIME);		// 延时显示
-		P1 &= 0xf0;							// 关掉位选
+		P1 |= 0x0f;							// 关掉位选
 		
 		SendByte_74HC164(2);
-		P1 |= 0xf4;
+		P1 &= 0xfB;
 		delay_ms(DELAY_TIME);
-		P1 &= 0xf0;
+		P1 |= 0x0f;
 		
 		SendByte_74HC164(3);
-		P1 |= 0xf2;
+		P1 &= 0xfD;
 		delay_ms(DELAY_TIME);
-		P1 &= 0xf0;
+		P1 |= 0x0f;
 
 		SendByte_74HC164(4);
-		P1 |= 0xf1;
+		P1 &= 0xfe;
 		delay_ms(DELAY_TIME);
 }
 

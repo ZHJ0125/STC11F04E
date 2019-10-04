@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    09/30/2019  22:14:13  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    10/01/2019  13:23:05  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
@@ -59,7 +59,7 @@ SEGMENT
   +--> ?PR?_DELAY_MS?MAIN
   +--> ?PR?_SENDBYTE_74HC164?MAIN
 
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  09/30/2019  22:14:13  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/01/2019  13:23:05  PAGE 2
 
 
 ?PR?TEST_LIGHT_BYTE?MAIN
@@ -109,103 +109,103 @@ SYMBOL TABLE OF MODULE:  .\Objects\test (MAIN)
   D:0006H         SYMBOL        i
   D:0004H         SYMBOL        j
   -------         ENDDO         
-  C:008EH         LINE#         36
-  C:008EH         LINE#         37
+  C:008EH         LINE#         38
   C:008EH         LINE#         39
-  C:0096H         LINE#         40
-  C:00ACH         LINE#         41
+  C:008EH         LINE#         41
+  C:0096H         LINE#         42
+  C:00ACH         LINE#         43
   -------         ENDPROC       _DELAY_MS
   -------         PROC          _SENDBYTE_74HC164
   D:0007H         SYMBOL        byte
   -------         DO            
   D:0007H         SYMBOL        num
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  09/30/2019  22:14:13  PAGE 3
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/01/2019  13:23:05  PAGE 3
 
 
   D:0006H         SYMBOL        c
   -------         ENDDO         
-  C:00ADH         LINE#         51
-  C:00ADH         LINE#         52
+  C:00ADH         LINE#         53
   C:00ADH         LINE#         54
-  C:00B3H         LINE#         55
-  C:00B5H         LINE#         56
-  C:00B5H         LINE#         57
-  C:00B9H         LINE#         58
-  C:00BBH         LINE#         59
-  C:00BDH         LINE#         60
-  C:00C1H         LINE#         61
-  C:00C5H         LINE#         62
+  C:00ADH         LINE#         56
+  C:00B3H         LINE#         57
+  C:00B5H         LINE#         58
+  C:00B5H         LINE#         59
+  C:00B9H         LINE#         60
+  C:00BBH         LINE#         61
+  C:00BDH         LINE#         62
+  C:00C1H         LINE#         63
+  C:00C5H         LINE#         64
   -------         ENDPROC       _SENDBYTE_74HC164
   -------         PROC          TEST_LIGHT_BIT
-  C:0003H         LINE#         74
-  C:0003H         LINE#         75
   C:0003H         LINE#         76
-  C:0005H         LINE#         77
-  C:0007H         LINE#         78
-  C:0009H         LINE#         79
-  C:000BH         LINE#         80
-  C:000DH         LINE#         81
-  C:0010H         LINE#         82
-  C:0015H         LINE#         84
-  C:0017H         LINE#         85
-  C:0019H         LINE#         86
-  C:001BH         LINE#         87
-  C:001DH         LINE#         88
-  C:001FH         LINE#         89
-  C:0022H         LINE#         90
-  C:0027H         LINE#         92
-  C:0029H         LINE#         93
-  C:002BH         LINE#         94
-  C:002DH         LINE#         95
-  C:002FH         LINE#         96
-  C:0031H         LINE#         97
-  C:0034H         LINE#         98
-  C:0039H         LINE#         100
-  C:003BH         LINE#         101
-  C:003DH         LINE#         102
-  C:003FH         LINE#         103
-  C:0041H         LINE#         104
-  C:0043H         LINE#         105
-  C:0046H         LINE#         106
+  C:0003H         LINE#         77
+  C:0003H         LINE#         78
+  C:0005H         LINE#         79
+  C:0007H         LINE#         80
+  C:0009H         LINE#         81
+  C:000BH         LINE#         82
+  C:000DH         LINE#         83
+  C:0010H         LINE#         84
+  C:0015H         LINE#         86
+  C:0017H         LINE#         87
+  C:0019H         LINE#         88
+  C:001BH         LINE#         89
+  C:001DH         LINE#         90
+  C:001FH         LINE#         91
+  C:0022H         LINE#         92
+  C:0027H         LINE#         94
+  C:0029H         LINE#         95
+  C:002BH         LINE#         96
+  C:002DH         LINE#         97
+  C:002FH         LINE#         98
+  C:0031H         LINE#         99
+  C:0034H         LINE#         100
+  C:0039H         LINE#         102
+  C:003BH         LINE#         103
+  C:003DH         LINE#         104
+  C:003FH         LINE#         105
+  C:0041H         LINE#         106
+  C:0043H         LINE#         107
+  C:0046H         LINE#         108
   -------         ENDPROC       TEST_LIGHT_BIT
   -------         PROC          TEST_LIGHT_BYTE
-  C:004BH         LINE#         119
-  C:004BH         LINE#         120
   C:004BH         LINE#         121
-  C:004EH         LINE#         122
-  C:0053H         LINE#         123
-  C:0056H         LINE#         124
-  C:0059H         LINE#         125
-  C:005CH         LINE#         127
-  C:0061H         LINE#         128
-  C:0064H         LINE#         129
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  09/30/2019  22:14:13  PAGE 4
+  C:004BH         LINE#         122
+  C:004BH         LINE#         123
+  C:004EH         LINE#         124
+  C:0053H         LINE#         125
+  C:0056H         LINE#         126
+  C:0059H         LINE#         127
+  C:005CH         LINE#         129
+  C:0061H         LINE#         130
+  C:0064H         LINE#         131
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/01/2019  13:23:05  PAGE 4
 
 
-  C:0067H         LINE#         130
-  C:006AH         LINE#         132
-  C:006FH         LINE#         133
-  C:0072H         LINE#         134
-  C:0075H         LINE#         135
-  C:0078H         LINE#         137
-  C:007DH         LINE#         138
-  C:0080H         LINE#         139
+  C:0067H         LINE#         132
+  C:006AH         LINE#         134
+  C:006FH         LINE#         135
+  C:0072H         LINE#         136
+  C:0075H         LINE#         137
+  C:0078H         LINE#         139
+  C:007DH         LINE#         140
+  C:0080H         LINE#         141
   -------         ENDPROC       TEST_LIGHT_BYTE
   -------         PROC          MAIN
-  C:00C6H         LINE#         145
-  C:00C6H         LINE#         146
   C:00C6H         LINE#         147
   C:00C6H         LINE#         148
   C:00C6H         LINE#         149
-  C:00C9H         LINE#         150
-  C:00C9H         LINE#         151
-  C:00D0H         LINE#         152
-  C:00D3H         LINE#         153
-  C:00D3H         LINE#         154
-  C:00D6H         LINE#         155
-  C:00D8H         LINE#         156
-  C:00D8H         LINE#         157
-  C:00DBH         LINE#         158
+  C:00C6H         LINE#         150
+  C:00C6H         LINE#         151
+  C:00C9H         LINE#         152
+  C:00C9H         LINE#         153
+  C:00D0H         LINE#         154
+  C:00D3H         LINE#         155
+  C:00D3H         LINE#         156
+  C:00D6H         LINE#         157
+  C:00D8H         LINE#         158
+  C:00D8H         LINE#         159
+  C:00DBH         LINE#         160
   -------         ENDPROC       MAIN
   -------         ENDMOD        MAIN
 

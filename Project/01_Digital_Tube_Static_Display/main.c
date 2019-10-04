@@ -54,7 +54,7 @@ void SendByte_74HC164(uchar byte)
 void main()
 {
 	int num;
-	P1 &= 0X0f;				// 位选
+	P1 &= 0Xf0;				// 位选
 	//DP = 0;					// 小数点
 	while(1)
 	{

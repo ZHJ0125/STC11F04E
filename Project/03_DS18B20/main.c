@@ -3,12 +3,11 @@
 #define uint unsigned int
 sbit DS = P1^7;					//define interface
 uint temp;							//variable of temperature
-uchar flag1;						//sign of the result positive or negative
-sbit dula = P2^6;				//定义数码管段选使能
-sbit wela = P2^7;				//定义数码管位选使能
-//定义数码管字符集
-unsigned char code table[]={0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
-//定义数码管段选
+//uchar flag1;						//sign of the result positive or negative
+sbit DAT = P3^0;
+sbit CLK = P3^1;
+
+//定义数码管段选(不加小数点0~9)
 unsigned char code table1[]={0x81,0xD7,0xC8,0xC2,0x96,0xA2,0xA0,0xC7,0x80,0x82};
 
 
@@ -25,13 +24,46 @@ void delay(uint count)	//delay function
   while(count)
   {
     i=200;
-    while(i>0)
-    i--;
+    while(i>0) i--;
     count--;
   }
 }
 
 
+
+/**********************************************************
+*  函数名称：低精度延时函数
+*  日期：2019-9-7
+*  姓名：ZhangHJ
+*  说明：嵌套循环延时
+***********************************************************/
+void delay_ms(unsigned int mstime)
+{
+	int i,j;
+	for(i=mstime; i>=0; i--)
+		for(j=112; j>=0; j--);
+}
+
+
+
+/**********************************************************
+*  函数名称：74HC164发送Byte函数
+*  日期：2019-9-29
+*  姓名：ZhangHJ
+*  说明：74HC164移位寄存器输入一字节数据发给寄存器
+***********************************************************/
+void SendByte_74HC164(uchar byte)
+{
+	uchar num,c;
+	num=table1[byte];
+	for(c=0; c<8; c++)
+	{
+		DAT=num&0x01;		// P3^0 --> 0000 000x
+		CLK=0;					// 制造一个上升沿
+		CLK=1;
+		num>>=1;				// 将数据发送到寄存器
+	}
+}
 
 
 /**********************************************************
@@ -45,26 +77,26 @@ void delay(uint count)	//delay function
 *						如果有低电平,在总线释放之后，等待15-60us,
 *						将电平拉低60-240us,告诉主机已经准备好.
 ***********************************************************/
-void dsreset(void)				//send reset and initialization command
+uchar dsreset(void)				//send reset and initialization command
 {
   uint i;
   DS = 0;								//先将端口拉低
-  i=103;								//维持低电平状态480us~960us
+  i=150;									//维持低电平状态480us~960us
   while(i>0)i--;
   DS = 1;								//然后释放总线(将总线拉高),若DS18B20做出反应,将会将在15us~60us后将总线拉低
-  i = 4;								//15us~60us等待
-  while(i>0)i--;
-//	while(DS);
-//	i = 0;
-//	while(DS)							//在DS高电平时等待
-//	{
-//		i++;
-//		if(i > 5000)				//等待时间大于60us,说明响应失败
-//		{
-//			reutrn 0;
-//		}
-//	}
-//	return 1;
+//  i = 4;							//15us~60us等待
+//  while(i>0)i--;
+
+	i = 0;
+	while(DS)							//在DS高电平时等待
+	{
+		i++;
+		if(i > 50000)				//等待时间大于60us,说明响应失败
+		{
+			return 0;
+		}
+	}
+	return 1;
 }
 
 
@@ -170,8 +202,12 @@ void tmpwritebyte(uchar dat)   //write a byte to ds18b20
 ***********************************************************/
 void tmpchange(void)					//DS18B20 begin change
 {
-  dsreset();
-  delay(1);
+  while(dsreset() == 0)
+	{
+		SendByte_74HC164(0);
+		P1 &= 0xfB;
+	}
+  delay_ms(1);
   tmpwritebyte(0xcc);					//address all drivers on bus
   tmpwritebyte(0x44);					//initiates a single temperature conversion
   //delay(100);								//not wait to change finish
@@ -196,8 +232,13 @@ uint tmp()										//get the temperature
 {
   float tt;
   uchar a,b;
-  dsreset();
-  delay(1);
+	//P1 |= 0x0f;
+  while(dsreset() == 0)
+	{
+		SendByte_74HC164(0);
+		P1 &= 0xfB;
+	}
+  delay_ms(1);
   tmpwritebyte(0xcc);					//读暂存寄存器
   tmpwritebyte(0xbe);
   a=tmpread();
@@ -261,41 +302,26 @@ void display(uint temp)				//显示程序
    ser=temp/10;
    SBUF=ser;
    A1=temp/100;								//A1 --> 百位
-   A2t=temp%100;
+   A2t=temp%100;							//A2t --> 后两位
    A2=A2t/10;									//A2 --> 十位
    A3=A2t%10;									//A3 --> 个位
-   dula=0;
-   P0=table[A1];							//显示百位
-   dula=1;
-   dula=0;
-
-   wela=0;
-   P0=0xfe;
-   wela=1;
-   wela=0;
-   delay(1);
-
-   dula=0;
-   P0=table1[A2];							//显示十位
-   dula=1;
-   dula=0;
-
-   wela=0;
-   P0=0xfd;
-   wela=1;
-   wela=0;
-   delay(1);
-
-   P0=table[A3];							//显示个位
-   dula=1;
-   dula=0;
-
-   P0=0xfb;
-   wela=1;
-   wela=0;
-   delay(1);
+   
+	// 控制数码管显示温度数值
+	P1 |= 0x0f;
+	SendByte_74HC164(A1);
+	P1 &= 0xfB;
+	delay_ms(6);
+	P1 |= 0x0f;
+	
+	SendByte_74HC164(A2);
+	P1 &= 0xfD;
+	delay_ms(6);
+	P1 |= 0x0f;
+	
+	SendByte_74HC164(A3);
+	P1 &= 0xfE;
+	delay_ms(6);
 }
-
 
 
 void main()
@@ -305,9 +331,10 @@ void main()
 	{
 		tmpchange();							//首次温度转换
 		//delay(200);
-		for(a=100;a>0;a--)				//延时,保持连续显示
+		for(a=10;a>0;a--)				//延时,保持连续显示
 		{
-			display(tmp());					//进行温度转换和数值显示
+			uint num = tmp();
+			display(num);					//进行温度转换和数值显示
 		}
 	}while(1);
 }
