@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\FinalCode" 
+PRINT(".\Listings\FinalCode.m51") RAMSIZE(256) 
