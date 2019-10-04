@@ -1,0 +1,84 @@
+C51 COMPILER V9.57.0.0   MAIN                                                              10/04/2019 14:25:13 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: E:\keil\install\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings
+                    -\main.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include<reg52.h>
+   2          #include<intrins.h>
+   3          #define uint unsigned int
+   4          sbit DP = P3^7;             // 波形测试引脚
+   5          /**********************************************************
+   6          *  函数名称：1ms高精度延时函数(1.004ms)(11.0592MHz)
+   7          *  日期：2019-10-4
+   8          *  姓名：ZhangHJ
+   9          *  说明：嵌套循环延时,延时1.004ms已用示波器测量
+  10          ***********************************************************/
+  11          void delay_ms()
+  12          {
+  13   1        int i,j;
+  14   1        for(i=1; i>=0; i--)
+  15   1          for(j=123; j>=0; j--);
+  16   1      }
+  17          
+  18          
+  19          /**********************************************************
+  20          *  函数名称：12us高精度延时函数(12.04us)(11.0592MHz)
+  21          *  日期：2019-10-4
+  22          *  姓名：ZhangHJ
+  23          *  说明：嵌套循环延时,延时12.04us已用示波器测量
+  24          ***********************************************************/
+  25          void delay_12us()
+  26          {
+  27   1        int i;
+  28   1        i++;i++;
+  29   1      }
+  30          
+  31          /**********************************************************
+  32          *  函数名称：6us高精度延时函数(6.280us)(11.0592MHz)
+  33          *  日期：2019-10-4
+  34          *  姓名：ZhangHJ
+  35          *  说明：嵌套循环延时,延时6.280us已用示波器测量
+  36          ***********************************************************/
+  37          void delay_6us()
+  38          {
+  39   1        _nop_();
+  40   1        _nop_();
+  41   1      }
+  42          
+  43          //_nop_();      //2.340us
+  44          
+  45          
+  46          
+  47          // 使用示波器测量DP引脚即可得到延时时间
+  48          void main()
+  49          {
+  50   1        uint i;
+  51   1        while(1)
+  52   1        {
+  53   2          i=10;while(i>0)i--;
+  54   2          DP = 1;
+C51 COMPILER V9.57.0.0   MAIN                                                              10/04/2019 14:25:13 PAGE 2   
+
+  55   2          i=10;while(i>0)i--;
+  56   2          DP = 0;
+  57   2        }
+  58   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     83    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

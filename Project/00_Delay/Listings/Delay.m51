@@ -1,0 +1,127 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    10/04/2019  14:25:13  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+E:\KEIL\INSTALL\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\Delay PRINT (.\Listings\Delay.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  E:\KEIL\INSTALL\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\Delay (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0002H     UNIT         ?DT?DELAY_12US?MAIN
+            IDATA   000AH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0020H     UNIT         ?PR?MAIN?MAIN
+            CODE    0023H     001FH     UNIT         ?PR?DELAY_MS?MAIN
+            CODE    0042H     0011H     UNIT         ?PR?DELAY_12US?MAIN
+            CODE    0053H     000CH     UNIT         ?C_C51STARTUP
+            CODE    005FH     0003H     UNIT         ?PR?DELAY_6US?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\Delay (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Delay (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  C:005FH         PUBLIC        delay_6us
+  B:00B0H.7       PUBLIC        DP
+  D:00B8H         PUBLIC        IP
+  C:0003H         PUBLIC        main
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/04/2019  14:25:13  PAGE 2
+
+
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  C:0042H         PUBLIC        delay_12us
+  C:0023H         PUBLIC        delay_ms
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          DELAY_MS
+  -------         DO            
+  D:0006H         SYMBOL        i
+  D:0004H         SYMBOL        j
+  -------         ENDDO         
+  C:0023H         LINE#         11
+  C:0023H         LINE#         12
+  C:0023H         LINE#         14
+  C:0027H         LINE#         15
+  C:0041H         LINE#         16
+  -------         ENDPROC       DELAY_MS
+  -------         PROC          DELAY_12US
+  -------         DO            
+  D:0008H         SYMBOL        i
+  -------         ENDDO         
+  C:0042H         LINE#         25
+  C:0042H         LINE#         26
+  C:0042H         LINE#         28
+  C:0052H         LINE#         29
+  -------         ENDPROC       DELAY_12US
+  -------         PROC          DELAY_6US
+  C:005FH         LINE#         37
+  C:005FH         LINE#         38
+  C:005FH         LINE#         39
+  C:0060H         LINE#         40
+  C:0061H         LINE#         41
+  -------         ENDPROC       DELAY_6US
+  -------         PROC          MAIN
+  -------         DO            
+  D:0006H         SYMBOL        i
+  -------         ENDDO         
+  C:0003H         LINE#         48
+  C:0003H         LINE#         49
+  C:0003H         LINE#         51
+  C:0003H         LINE#         52
+  C:0003H         LINE#         53
+  C:0010H         LINE#         54
+  C:0012H         LINE#         55
+  C:001FH         LINE#         56
+  C:0021H         LINE#         57
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY_MS?MAIN
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY_12US?MAIN
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY_6US?MAIN
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/04/2019  14:25:13  PAGE 3
+
+
+
+Program Size: data=11.0 xdata=0 code=98
+LINK/LOCATE RUN COMPLETE.  3 WARNING(S),  0 ERROR(S)
