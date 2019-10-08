@@ -9,6 +9,7 @@
 主控芯片 | STC11F04E
 其他芯片 | 74HC164、DS1302
 开发环境 | Keil uVersion5
+晶振型号 | 11.0592MHz
 
 # 项目介绍
 > Datasheet 目录
