@@ -1,0 +1,192 @@
+C51 COMPILER V9.57.0.0   MAIN                                                              10/09/2019 13:26:56 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: E:\keil\install\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings
+                    -\main.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <reg52.h>
+   2          
+   3          #define uchar unsigned char
+   4          #define uint unsigned int
+   5          #define FOSC 11059200L              // 晶振频率11.0592MHz(s)
+   6          #define CYCLE (12000000.0/FOSC)     // 系统机器周期(us) 
+   7          #define SHOWDALAY 6
+   8          
+   9          sbit Trig = P1^4;                   // 触发信号
+  10          sbit Echo = P1^5;                   // 回响信号
+  11          sbit DP1 = P3^5;                    // 小数点
+  12          sbit DAT = P3^0;                    // 74HC164 数据输入端口
+  13          sbit CLK = P3^1;                    // 74HC164 时钟输入端口
+  14          
+  15          //定义数码管段选(不加小数点0~9、'-')
+  16          unsigned char code table1[]={0x81,0xD7,0xC8,0xC2,0x96,0xA2,0xA0,0xC7,0x80,0x82,0xfe};
+  17          
+  18          
+  19          /**********************************************************
+  20          *  函数名称：12us高精度延时函数(12.04us)(11.0592MHz)
+  21          *  日期：2019-10-4
+  22          *  姓名：ZhangHJ
+  23          *  说明：嵌套循环延时,延时12.04us已用示波器测量
+  24          ***********************************************************/
+  25          void delay_12us()
+  26          {
+  27   1        int i;
+  28   1        i++;i++;
+  29   1      }
+  30          
+  31          
+  32          
+  33          /**********************************************************
+  34          *  函数名称：低精度延时函数
+  35          *  日期：2019-9-7
+  36          *  姓名：ZhangHJ
+  37          *  说明：嵌套循环延时
+  38          ***********************************************************/
+  39          void delay(unsigned int mstime)
+  40          {
+  41   1        int i,j;
+  42   1        for(i=mstime; i>=0; i--)
+  43   1          for(j=114; j>=0; j--);
+  44   1      }
+  45          
+  46          
+  47          
+  48          /**********************************************************
+  49          *  函数名称：74HC164发送Byte函数
+  50          *  日期：2019-9-29
+  51          *  姓名：ZhangHJ
+  52          *  说明：74HC164移位寄存器输入一字节数据发给寄存器
+  53          ***********************************************************/
+  54          void SendByte_74HC164(uchar byte)
+C51 COMPILER V9.57.0.0   MAIN                                                              10/09/2019 13:26:56 PAGE 2   
+
+  55          {
+  56   1        uchar num,c;
+  57   1        num=table1[byte];
+  58   1        for(c=0; c<8; c++)
+  59   1        {
+  60   2          DAT=num&0x01;   // P3^0 --> 0000 000x
+  61   2          CLK=0;          // 制造一个上升沿
+  62   2          CLK=1;
+  63   2          num>>=1;        // 将数据发送到寄存器
+  64   2        }
+  65   1      }
+  66          
+  67          
+  68          
+  69          /**********************************************************
+  70          *  函数名称：超声波测距显示函数
+  71          *  修改日期：2019-10-9
+  72          *  修改人：ZhangHJ
+  73          *  说明：1.dist表示需要显示的数值(百/千位数值)
+  74          *        2.A0、A1、A2、A3分别为百位、十位、个位、小数位的数值
+  75          ***********************************************************/
+  76          void display(uint dist)       // 显示程序
+  77          {
+  78   1        uchar A0,A1t,A1,A2t,A2,A3;
+  79   1        A0 = dist/1000;             // A0 --> 百位
+  80   1        A1t = dist/100;             // A1t --> 前两位
+  81   1        A1 = A1t%10;                // A1 --> 十位
+  82   1        A2t = dist%100;             // A2t --> 后两位
+  83   1        A2 = A2t/10;                // A2 --> 个位
+  84   1        A3 = dist%10;               // A3 --> 小数位
+  85   1        DP1 = 0;                    // 小数点
+  86   1        
+  87   1        if(A0 >= 10) A0 = 10;
+  88   1        
+  89   1        // 控制数码管显示温度数值
+  90   1        P1 |= 0x0f;
+  91   1        SendByte_74HC164(A0);
+  92   1        P1 &= 0xf7;                 // 0111
+  93   1        delay(SHOWDALAY);
+  94   1        P1 |= 0x0f;
+  95   1      
+  96   1        SendByte_74HC164(A1);
+  97   1        P1 &= 0xfB;                 // 1011
+  98   1        delay(SHOWDALAY);
+  99   1        P1 |= 0x0f;
+ 100   1        
+ 101   1        SendByte_74HC164(A2);
+ 102   1        P1 &= 0xfD;                 // 1101
+ 103   1        delay(SHOWDALAY);
+ 104   1        P1 |= 0x0f;
+ 105   1        
+ 106   1        SendByte_74HC164(A3);
+ 107   1        P1 &= 0xfE;                 // 1110
+ 108   1        delay(SHOWDALAY);
+ 109   1        P1 |= 0x0f;
+ 110   1      }
+ 111          
+ 112          
+ 113          
+ 114          
+ 115          /**********************************************************
+ 116          *  函数名称：超声波测距函数
+C51 COMPILER V9.57.0.0   MAIN                                                              10/09/2019 13:26:56 PAGE 3   
+
+ 117          *  修改日期：2019-10-9
+ 118          *  修改人：ZhangHJ
+ 119          *  说明：1. 采用IO口TRIG触发测距，给至少10us的高电平信号
+ 120          *        2. 模块自动发送8个40khz的方波，自动检测是否有信号返回
+ 121          *        3. 若有信号返回，通过IO口ECHO输出一个高电平，高电平持续的时间就是超声波从发射到返回的时间
+ 122          *        4. 测试距离 = (高电平时间*声速(340M/S))/2
+ 123          ***********************************************************/
+ 124          float GetDistance()
+ 125          {
+ 126   1        float dist = 0.0f;
+ 127   1        uint count = 0;
+ 128   1        
+ 129   1        TMOD = 0x01;                      // 计时器0方式1 (16位计数器,TL0、TH0全用)
+ 130   1        TH0 = TL0 = 0;                    // 装入初值
+ 131   1        Trig = 1;                         // 打开触发
+ 132   1        delay_12us();                     // 延时一会儿,保证延时10us时间
+ 133   1        Trig = 0;                         // 关闭触发
+ 134   1        while(!Echo);                     // 测距过程中
+ 135   1        TR0 = 1;                          // 打开中断
+ 136   1        while(Echo);                      // 等待输出电平结束
+ 137   1        TR0 = 0;                          // 关闭中断
+ 138   1        count = (TH0 << 8) | TL0;         // 读取16位计时器里的数字
+ 139   1        dist = CYCLE * count * 0.017 * 2;     // 0.017cm/us
+ 140   1        return dist;                      // 返回值是一个浮点型数据
+ 141   1      }
+ 142          
+ 143          
+ 144          
+ 145          // 主函数功能: 循环测距，在数码管上显示距离
+ 146          void main()
+ 147          {
+ 148   1        uint dis;
+ 149   1        uint i;
+ 150   1        Trig = 0;
+ 151   1        Echo = 1;
+ 152   1        delay(200);                       // 初始化等待
+ 153   1        
+ 154   1        while(1)
+ 155   1        {
+ 156   2          dis = (int)(GetDistance()*10);  // 开始测距
+ 157   2          for(i=200; i>0; i--)
+ 158   2          {
+ 159   3            display(dis);                 // 循环显示
+ 160   3          }
+ 161   2        }
+ 162   1      }
+ 163          
+ 164          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    346    ----
+   CONSTANT SIZE    =     11    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      13
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
