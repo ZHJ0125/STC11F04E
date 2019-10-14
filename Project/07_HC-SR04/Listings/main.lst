@@ -1,10 +1,10 @@
-C51 COMPILER V9.57.0.0   MAIN                                                              10/09/2019 13:26:56 PAGE 1   
+C51 COMPILER V9.57.0.0   MAIN                                                              10/13/2019 21:29:34 PAGE 1   
 
 
 C51 COMPILER V9.57.0.0, COMPILATION OF MODULE MAIN
 OBJECT MODULE PLACED IN .\Objects\main.obj
-COMPILER INVOKED BY: E:\keil\install\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings
-                    -\main.lst) TABS(2) OBJECT(.\Objects\main.obj)
+COMPILER INVOKED BY: E:\MDK\install\Core\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\List
+                    -ings\main.lst) TABS(2) OBJECT(.\Objects\main.obj)
 
 line level    source
 
@@ -13,7 +13,7 @@ line level    source
    3          #define uchar unsigned char
    4          #define uint unsigned int
    5          #define FOSC 11059200L              // 晶振频率11.0592MHz(s)
-   6          #define CYCLE (12000000.0/FOSC)     // 系统机器周期(us) 
+   6          #define CYCLE (12000000.0/FOSC)     // 系统机器周期(us)
    7          #define SHOWDALAY 6
    8          
    9          sbit Trig = P1^4;                   // 触发信号
@@ -62,7 +62,7 @@ line level    source
   52          *  说明：74HC164移位寄存器输入一字节数据发给寄存器
   53          ***********************************************************/
   54          void SendByte_74HC164(uchar byte)
-C51 COMPILER V9.57.0.0   MAIN                                                              10/09/2019 13:26:56 PAGE 2   
+C51 COMPILER V9.57.0.0   MAIN                                                              10/13/2019 21:29:34 PAGE 2   
 
   55          {
   56   1        uchar num,c;
@@ -126,7 +126,7 @@ line level    source
  114          
  115          /**********************************************************
  116          *  函数名称：超声波测距函数
-C51 COMPILER V9.57.0.0   MAIN                                                              10/09/2019 13:26:56 PAGE 3   
+C51 COMPILER V9.57.0.0   MAIN                                                              10/13/2019 21:29:34 PAGE 3   
 
  117          *  修改日期：2019-10-9
  118          *  修改人：ZhangHJ
@@ -139,43 +139,45 @@ line level    source
  125          {
  126   1        float dist = 0.0f;
  127   1        uint count = 0;
- 128   1        
+ 128   1        //AUXR &= 0x7f;                     // 定时器0 12分频
  129   1        TMOD = 0x01;                      // 计时器0方式1 (16位计数器,TL0、TH0全用)
  130   1        TH0 = TL0 = 0;                    // 装入初值
- 131   1        Trig = 1;                         // 打开触发
- 132   1        delay_12us();                     // 延时一会儿,保证延时10us时间
- 133   1        Trig = 0;                         // 关闭触发
- 134   1        while(!Echo);                     // 测距过程中
- 135   1        TR0 = 1;                          // 打开中断
- 136   1        while(Echo);                      // 等待输出电平结束
- 137   1        TR0 = 0;                          // 关闭中断
- 138   1        count = (TH0 << 8) | TL0;         // 读取16位计时器里的数字
- 139   1        dist = CYCLE * count * 0.017 * 2;     // 0.017cm/us
- 140   1        return dist;                      // 返回值是一个浮点型数据
- 141   1      }
- 142          
+ 131   1      
+ 132   1        Trig = 1;                         // 打开触发
+ 133   1        delay_12us();                     // 延时一会儿,保证延时10us时间
+ 134   1        Trig = 0;                         // 关闭触发
+ 135   1        while(!Echo);                     // 测距过程中
+ 136   1        TR0 = 1;                          // 打开中断
+ 137   1        while(Echo);                      // 等待输出电平结束
+ 138   1        TR0 = 0;                          // 关闭中断
+ 139   1        count = (TH0 << 8) | TL0;         // 读取16位计时器里的数字
+ 140   1        dist = CYCLE * count * 0.017 * 2;     // 0.017cm/us
+ 141   1        return dist;                      // 返回值是一个浮点型数据
+ 142   1      }
  143          
  144          
- 145          // 主函数功能: 循环测距，在数码管上显示距离
- 146          void main()
- 147          {
- 148   1        uint dis;
- 149   1        uint i;
- 150   1        Trig = 0;
- 151   1        Echo = 1;
- 152   1        delay(200);                       // 初始化等待
- 153   1        
- 154   1        while(1)
- 155   1        {
- 156   2          dis = (int)(GetDistance()*10);  // 开始测距
- 157   2          for(i=200; i>0; i--)
- 158   2          {
- 159   3            display(dis);                 // 循环显示
- 160   3          }
- 161   2        }
- 162   1      }
- 163          
- 164          
+ 145          
+ 146          // 主函数功能: 循环测距，在数码管上显示距离
+ 147          void main()
+ 148          {
+ 149   1        uint dis;
+ 150   1        uint i;
+ 151   1        Trig = 0;
+ 152   1        Echo = 1;
+ 153   1        //AUXR &= 0x7F;   //定时器时钟12T模式
+ 154   1        delay(200);                       // 初始化等待
+ 155   1        
+ 156   1        while(1)
+ 157   1        {
+ 158   2          dis = (int)(GetDistance()*10);  // 开始测距
+ 159   2          for(i=200; i>0; i--)
+ 160   2          {
+ 161   3            display(dis);                 // 循环显示
+ 162   3          }
+ 163   2        }
+ 164   1      }
+ 165          
+ 166          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE

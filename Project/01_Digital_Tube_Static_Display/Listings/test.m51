@@ -1,8 +1,8 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    10/07/2019  09:52:00  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    10/14/2019  10:41:22  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
-E:\KEIL\INSTALL\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\test PRINT (.\Listings\test.m51)
+E:\MDK\INSTALL\CORE\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\test PRINT (.\Listings\test.m51) RAMSIZE (256)
 
 
 MEMORY MODEL: SMALL
@@ -10,7 +10,7 @@ MEMORY MODEL: SMALL
 
 INPUT MODULES INCLUDED:
   .\Objects\main.obj (MAIN)
-  E:\KEIL\INSTALL\C51\LIB\C51S.LIB (?C_STARTUP)
+  E:\MDK\INSTALL\CORE\C51\LIB\C51S.LIB (?C_STARTUP)
 
 
 LINK MAP OF MODULE:  .\Objects\test (MAIN)
@@ -59,7 +59,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\test (MAIN)
   -------         MODULE        MAIN
   C:0000H         SYMBOL        _ICE_DUMMY_
   D:0090H         PUBLIC        P1
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/07/2019  09:52:00  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/14/2019  10:41:22  PAGE 2
 
 
   D:00B0H         PUBLIC        P3
@@ -112,17 +112,17 @@ SYMBOL TABLE OF MODULE:  .\Objects\test (MAIN)
   C:0003H         LINE#         54
   C:0003H         LINE#         55
   C:0003H         LINE#         57
-  C:0006H         LINE#         59
   C:0006H         LINE#         60
   C:0006H         LINE#         61
-  C:0009H         LINE#         62
+  C:0006H         LINE#         62
   C:0009H         LINE#         63
-  C:0010H         LINE#         64
-  C:0015H         LINE#         65
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/07/2019  09:52:00  PAGE 3
+  C:0009H         LINE#         64
+  C:0010H         LINE#         65
+  C:0015H         LINE#         66
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/14/2019  10:41:22  PAGE 3
 
 
-  C:001CH         LINE#         66
+  C:001CH         LINE#         67
   -------         ENDPROC       MAIN
   -------         ENDMOD        MAIN
 

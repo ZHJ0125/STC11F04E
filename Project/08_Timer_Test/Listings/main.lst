@@ -1,0 +1,178 @@
+C51 COMPILER V9.57.0.0   MAIN                                                              10/11/2019 16:15:06 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: E:\keil\install\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings
+                    -\main.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <reg52.h>
+   2          
+   3          #define uchar unsigned char
+   4          #define uint unsigned int
+   5          #define FOSC 11059200L              // 晶振频率11.0592MHz(s)
+   6          #define CYCLE (12000000.0/FOSC)     // 系统机器周期(us) 
+   7          #define SHOWDALAY 6
+   8          
+   9          sbit DAT = P3^0;                    // 74HC164 数据输入端口
+  10          sbit CLK = P3^1;                    // 74HC164 时钟输入端口
+  11          
+  12          //定义数码管段选(不加小数点0~9、'-')
+  13          unsigned char code table1[]={0x81,0xD7,0xC8,0xC2,0x96,0xA2,0xA0,0xC7,0x80,0x82,0xfe};
+  14          
+  15          
+  16          /**********************************************************
+  17          *  函数名称：12us高精度延时函数(12.04us)(11.0592MHz)
+  18          *  日期：2019-10-4
+  19          *  姓名：ZhangHJ
+  20          *  说明：嵌套循环延时,延时12.04us已用示波器测量
+  21          ***********************************************************/
+  22          void delay_12us()
+  23          {
+  24   1        int i;
+  25   1        i++;i++;
+  26   1      }
+  27          
+  28          
+  29          
+  30          /**********************************************************
+  31          *  函数名称：低精度延时函数
+  32          *  日期：2019-9-7
+  33          *  姓名：ZhangHJ
+  34          *  说明：嵌套循环延时
+  35          ***********************************************************/
+  36          void delay(unsigned int mstime)
+  37          {
+  38   1        int i,j;
+  39   1        for(i=mstime; i>=0; i--)
+  40   1          for(j=114; j>=0; j--);
+  41   1      }
+  42          
+  43          
+  44          
+  45          /**********************************************************
+  46          *  函数名称：74HC164发送Byte函数
+  47          *  日期：2019-9-29
+  48          *  姓名：ZhangHJ
+  49          *  说明：74HC164移位寄存器输入一字节数据发给寄存器
+  50          ***********************************************************/
+  51          void SendByte_74HC164(uchar byte)
+  52          {
+  53   1        uchar num,c;
+  54   1        num=table1[byte];
+C51 COMPILER V9.57.0.0   MAIN                                                              10/11/2019 16:15:06 PAGE 2   
+
+  55   1        for(c=0; c<8; c++)
+  56   1        {
+  57   2          DAT=num&0x01;   // P3^0 --> 0000 000x
+  58   2          CLK=0;          // 制造一个上升沿
+  59   2          CLK=1;
+  60   2          num>>=1;        // 将数据发送到寄存器
+  61   2        }
+  62   1      }
+  63          
+  64          
+  65          
+  66          /**********************************************************
+  67          *  函数名称：超声波测距显示函数
+  68          *  修改日期：2019-10-9
+  69          *  修改人：ZhangHJ
+  70          *  说明：1.dist表示需要显示的数值(百/千位数值)
+  71          *        2.A0、A1、A2、A3分别为百位、十位、个位、小数位的数值
+  72          ***********************************************************/
+  73          void display(uint dist)       // 显示程序
+  74          {
+  75   1        uchar A0,A1t,A1,A2t,A2,A3;
+  76   1        A0 = dist/1000;             // A0 --> 千位
+  77   1        A1t = dist/100;             // A1t --> 前两位
+  78   1        A1 = A1t%10;                // A1 --> 百位
+  79   1        A2t = dist%100;             // A2t --> 后两位
+  80   1        A2 = A2t/10;                // A2 --> 十位
+  81   1        A3 = dist%10;               // A3 --> 个位
+  82   1        
+  83   1        // 控制数码管显示温度数值
+  84   1        P1 |= 0x0f;
+  85   1        SendByte_74HC164(A0);
+  86   1        P1 &= 0xf7;                 // 0111
+  87   1        delay(SHOWDALAY);
+  88   1        P1 |= 0x0f;
+  89   1      
+  90   1        SendByte_74HC164(A1);
+  91   1        P1 &= 0xfB;                 // 1011
+  92   1        delay(SHOWDALAY);
+  93   1        P1 |= 0x0f;
+  94   1        
+  95   1        SendByte_74HC164(A2);
+  96   1        P1 &= 0xfD;                 // 1101
+  97   1        delay(SHOWDALAY);
+  98   1        P1 |= 0x0f;
+  99   1        
+ 100   1        SendByte_74HC164(A3);
+ 101   1        P1 &= 0xfE;                 // 1110
+ 102   1        delay(SHOWDALAY);
+ 103   1        P1 |= 0x0f;
+ 104   1      }
+ 105          
+ 106          
+ 107          
+ 108          
+ 109          /**********************************************************
+ 110          *  函数名称：定时器机器周期测试函数
+ 111          *  修改日期：2019-10-11
+ 112          *  修改人：ZhangHJ
+ 113          *  说明：1. 初始化计时模式,打开中断计时
+ 114          *        2. 延时12us,关闭计时
+ 115          *        3. 正确的话计数值应该是 11
+ 116          ***********************************************************/
+C51 COMPILER V9.57.0.0   MAIN                                                              10/11/2019 16:15:06 PAGE 3   
+
+ 117          uint GetCount()
+ 118          {
+ 119   1        uint count = 0;
+ 120   1        
+ 121   1        TMOD = 0x01;                      // 计时器0方式1 (16位计数器,TL0、TH0全用)
+ 122   1        TH0 = TL0 = 0;                    // 装入初值
+ 123   1      
+ 124   1        TR0 = 1;                          // 打开中断,开始计时测试
+ 125   1        delay_12us();                     // 延时12us
+ 126   1        TR0 = 0;                          // 关闭中断
+ 127   1        count = (TH0 << 8) | TL0;         // 读取16位计时器里的数字
+ 128   1        return count;                     // 返回计数个数
+ 129   1      }
+ 130          
+ 131          
+ 132          
+ 133          // 主函数功能: 测试一次计时器机器周期
+ 134          void main()
+ 135          {
+ 136   1        uint dis;
+ 137   1        uint i;
+ 138   1        delay(200);                       // 初始化等待
+ 139   1        
+ 140   1        while(1)
+ 141   1        {
+ 142   2          dis = GetCount();               // 开始测试时间
+ 143   2          for(i=200; i>0; i--)
+ 144   2          {
+ 145   3            display(dis);                 // 循环显示计数值
+ 146   3          }
+ 147   2        }
+ 148   1      }
+ 149          
+ 150          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    274    ----
+   CONSTANT SIZE    =     11    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       9
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

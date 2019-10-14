@@ -3,12 +3,9 @@
 #define uchar unsigned char
 #define uint unsigned int
 #define FOSC 11059200L							// 晶振频率11.0592MHz(s)
-#define CYCLE (12000000.0/FOSC)			// 系统机器周期(us)
+#define CYCLE (12000000.0/FOSC)			// 系统机器周期(us) 
 #define SHOWDALAY 6
 
-sbit Trig = P1^4;										// 触发信号
-sbit Echo = P1^5;										// 回响信号
-sbit DP1 = P3^5;										// 小数点
 sbit DAT = P3^0;										// 74HC164 数据输入端口
 sbit CLK = P3^1;										// 74HC164 时钟输入端口
 
@@ -76,15 +73,12 @@ void SendByte_74HC164(uchar byte)
 void display(uint dist)				// 显示程序
 {
 	uchar A0,A1t,A1,A2t,A2,A3;
-	A0 = dist/1000;							// A0 --> 百位
+	A0 = dist/1000;							// A0 --> 千位
 	A1t = dist/100;							// A1t --> 前两位
-	A1 = A1t%10;								// A1 --> 十位
+	A1 = A1t%10;								// A1 --> 百位
 	A2t = dist%100;							// A2t --> 后两位
-	A2 = A2t/10;								// A2 --> 个位
-	A3 = dist%10;								// A3 --> 小数位
-	DP1 = 0;										// 小数点
-	
-	if(A0 >= 10) A0 = 10;
+	A2 = A2t/10;								// A2 --> 十位
+	A3 = dist%10;								// A3 --> 个位
 	
 	// 控制数码管显示温度数值
 	P1 |= 0x0f;
@@ -113,52 +107,42 @@ void display(uint dist)				// 显示程序
 
 
 /**********************************************************
-*  函数名称：超声波测距函数
-*  修改日期：2019-10-9
+*  函数名称：定时器机器周期测试函数
+*  修改日期：2019-10-11
 *  修改人：ZhangHJ
-*  说明：1. 采用IO口TRIG触发测距，给至少10us的高电平信号
-*				 2. 模块自动发送8个40khz的方波，自动检测是否有信号返回
-*				 3. 若有信号返回，通过IO口ECHO输出一个高电平，高电平持续的时间就是超声波从发射到返回的时间
-*				 4. 测试距离 = (高电平时间*声速(340M/S))/2
+*  说明：1. 初始化计时模式,打开中断计时
+*				 2. 延时12us,关闭计时
+*				 3. 正确的话计数值应该是 11
 ***********************************************************/
-float GetDistance()
+uint GetCount()
 {
-	float dist = 0.0f;
 	uint count = 0;
-	//AUXR &= 0x7f;											// 定时器0 12分频
+	
 	TMOD = 0x01;											// 计时器0方式1	(16位计数器,TL0、TH0全用)
 	TH0 = TL0 = 0;										// 装入初值
 
-	Trig = 1;													// 打开触发
-	delay_12us();											// 延时一会儿,保证延时10us时间
-	Trig = 0;													// 关闭触发
-	while(!Echo);											// 测距过程中
-	TR0 = 1;													// 打开中断
-	while(Echo);											// 等待输出电平结束
+	TR0 = 1;													// 打开中断,开始计时测试
+	delay_12us();											// 延时12us
 	TR0 = 0;													// 关闭中断
 	count = (TH0 << 8) | TL0;					// 读取16位计时器里的数字
-	dist = CYCLE * count * 0.017 * 2;			// 0.017cm/us
-	return dist;											// 返回值是一个浮点型数据
+	return count;											// 返回计数个数
 }
 
 
 
-// 主函数功能: 循环测距，在数码管上显示距离
+// 主函数功能: 测试一次计时器机器周期
 void main()
 {
 	uint dis;
 	uint i;
-	Trig = 0;
-	Echo = 1;
-	//AUXR &= 0x7F;		//定时器时钟12T模式
 	delay(200);												// 初始化等待
 	
 	while(1)
 	{
-		dis = (int)(GetDistance()*10);	// 开始测距
+		dis = GetCount();								// 开始测试时间
 		for(i=200; i>0; i--)
 		{
-			display(dis);									// 循环显示
+			display(dis);									// 循环显示计数值
 		}
 	}
 }

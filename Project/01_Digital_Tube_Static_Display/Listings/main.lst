@@ -1,10 +1,10 @@
-C51 COMPILER V9.57.0.0   MAIN                                                              10/07/2019 09:52:00 PAGE 1   
+C51 COMPILER V9.57.0.0   MAIN                                                              10/14/2019 10:41:22 PAGE 1   
 
 
 C51 COMPILER V9.57.0.0, COMPILATION OF MODULE MAIN
 OBJECT MODULE PLACED IN .\Objects\main.obj
-COMPILER INVOKED BY: E:\keil\install\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings
-                    -\main.lst) TABS(2) OBJECT(.\Objects\main.obj)
+COMPILER INVOKED BY: E:\MDK\install\Core\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\List
+                    -ings\main.lst) TABS(2) OBJECT(.\Objects\main.obj)
 
 line level    source
 
@@ -62,23 +62,23 @@ line level    source
   52          
   53            
   54          void main()
-C51 COMPILER V9.57.0.0   MAIN                                                              10/07/2019 09:52:00 PAGE 2   
+C51 COMPILER V9.57.0.0   MAIN                                                              10/14/2019 10:41:22 PAGE 2   
 
   55          {
   56   1        int num;
-  57   1        P1 &= 0Xf0;       // 位选
-  58   1        //DP = 0;         // 小数点
-  59   1        while(1)
-  60   1        {
-  61   2          for(num=0; num<10; num++)
-  62   2          {
-  63   3            delay_ms(50);
-  64   3            SendByte_74HC164(num);
-  65   3            delay_ms(2000);
-  66   3          }
-  67   2        }
-  68   1      }
-  69          
+  57   1        P1 &= 0xf0;       // 高电平位选
+  58   1        //P1 |= 0X0f;       // 低电平位选
+  59   1        //DP = 0;         // 小数点
+  60   1        while(1)
+  61   1        {
+  62   2          for(num=0; num<10; num++)
+  63   2          {
+  64   3            delay_ms(50);
+  65   3            SendByte_74HC164(num);
+  66   3            delay_ms(2000);
+  67   3          }
+  68   2        }
+  69   1      }
   70          
   71          
   72          
@@ -87,6 +87,7 @@ line level    source
   75          
   76          
   77          
+  78          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
