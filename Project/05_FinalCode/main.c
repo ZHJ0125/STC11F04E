@@ -1,4 +1,4 @@
-#include<reg51.h>
+#include <reg51.h>
 #include <intrins.h>
 #define uchar unsigned char
 #define uint unsigned int
