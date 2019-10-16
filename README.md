@@ -1,3 +1,10 @@
+![](https://img.shields.io/badge/Creator-ZhangH.J.-success)
+![](https://img.shields.io/github/license/ZHJ0125/STC11F04E)
+![](https://img.shields.io/npm/v/drone.svg)
+![](https://img.shields.io/badge/language-C-9cf.svg)
+
+
+
 # STC11F04E
 本仓库存放电子工艺实习的实验代码
 
