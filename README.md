@@ -36,5 +36,8 @@
 - 存放我的展示视频以及焊接教程视频
 
 # 项目博客
-
- https://blog.csdn.net/ZHJ123CSDN/article/details/102299484 
+> 数码管显示温度和时间
+- https://blog.csdn.net/ZHJ123CSDN/article/details/102299484 
+ 
+> 通过超声波传感器显示距离
+- https://blog.csdn.net/ZHJ123CSDN/article/details/102490823
