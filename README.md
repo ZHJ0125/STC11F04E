@@ -27,3 +27,7 @@
 > Video 目录
 
 - 存放我的展示视频以及焊接教程视频
+
+# 项目博客
+
+ https://blog.csdn.net/ZHJ123CSDN/article/details/102299484 
