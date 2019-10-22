@@ -4,7 +4,8 @@
 
 sbit DAT = P3^0;				// 74HC164 数据输入端口
 sbit CLK = P3^1;				// 74HC164 时钟输入端口
-uint num = 0;					// 显示的数字
+sbit KEY = P3^2;				// 按键端口
+uint num = 0;						// 显示的数字
 
 // 定义数码管段选(不加小数点0~9)
 uchar code table1[]={0x81,0xD7,0xC8,0xC2,0x96,0xA2,0xA0,0xC7,0x80,0x82};
@@ -69,8 +70,14 @@ void configExtInt0()
 ***********************************************************/
 void extInt0() interrupt 0
 {
-	num ++;
-	num = num % 10;
+	EA = 0;						// 关闭总中断
+	delay(40);				// 延时防抖
+	if(KEY == 0)
+	{
+		num ++;
+		num = num % 10;
+	}
+	EA = 1;						// 开启总中断
 }
 
 

@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    10/22/2019  17:17:38  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    10/22/2019  20:35:04  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
@@ -32,13 +32,13 @@ LINK MAP OF MODULE:  .\Objects\Interrupt (MAIN)
             CODE    0003H     0003H     ABSOLUTE     
             CODE    0006H     008CH     UNIT         ?C_C51STARTUP
             CODE    0092H     0055H     UNIT         ?C?LIB_CODE
-            CODE    00E7H     003AH     UNIT         ?PR?EXTINT0?MAIN
-            CODE    0121H     001FH     UNIT         ?PR?_DELAY?MAIN
-            CODE    0140H     0019H     UNIT         ?PR?_SENDBYTE_74HC164?MAIN
-            CODE    0159H     0014H     UNIT         ?PR?MAIN?MAIN
-            CODE    016DH     000AH     UNIT         ?CO?MAIN
-            CODE    0177H     0007H     UNIT         ?PR?CONFIGEXTINT0?MAIN
-            CODE    017EH     0005H     UNIT         ?C_INITSEG
+            CODE    00E7H     0048H     UNIT         ?PR?EXTINT0?MAIN
+            CODE    012FH     001FH     UNIT         ?PR?_DELAY?MAIN
+            CODE    014EH     0019H     UNIT         ?PR?_SENDBYTE_74HC164?MAIN
+            CODE    0167H     0014H     UNIT         ?PR?MAIN?MAIN
+            CODE    017BH     000AH     UNIT         ?CO?MAIN
+            CODE    0185H     0007H     UNIT         ?PR?CONFIGEXTINT0?MAIN
+            CODE    018CH     0005H     UNIT         ?C_INITSEG
 
 
 
@@ -48,20 +48,25 @@ OVERLAY MAP OF MODULE:   .\Objects\Interrupt (MAIN)
 SEGMENT
   +--> CALLED SEGMENT
 ---------------------
+?PR?EXTINT0?MAIN
+  +--> ?PR?_DELAY?MAIN
+
+*** NEW ROOT ***************************************************
+
 ?C_C51STARTUP
   +--> ?PR?MAIN?MAIN
   +--> ?C_INITSEG
 
 ?PR?MAIN?MAIN
   +--> ?PR?CONFIGEXTINT0?MAIN
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/22/2019  20:35:04  PAGE 2
+
+
   +--> ?PR?_SENDBYTE_74HC164?MAIN
   +--> ?PR?_DELAY?MAIN
 
 ?PR?_SENDBYTE_74HC164?MAIN
   +--> ?CO?MAIN
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/22/2019  17:17:38  PAGE 2
-
-
 
 
 
@@ -75,22 +80,23 @@ SYMBOL TABLE OF MODULE:  .\Objects\Interrupt (MAIN)
   D:0090H         PUBLIC        P1
   D:00B0H         PUBLIC        P3
   B:00A8H.7       PUBLIC        EA
-  C:0177H         PUBLIC        configExtInt0
+  C:0185H         PUBLIC        configExtInt0
   D:00A8H         PUBLIC        IE
-  C:0121H         PUBLIC        _delay
-  C:0140H         PUBLIC        _SendByte_74HC164
+  C:012FH         PUBLIC        _delay
+  C:014EH         PUBLIC        _SendByte_74HC164
   D:00B8H         PUBLIC        IP
-  C:0159H         PUBLIC        main
+  C:0167H         PUBLIC        main
   C:00E7H         PUBLIC        extInt0
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
-  C:016DH         PUBLIC        table1
+  C:017BH         PUBLIC        table1
   B:00A8H.0       PUBLIC        EX0
   B:0088H.0       PUBLIC        IT0
   D:0008H         PUBLIC        num
   B:00B0H.0       PUBLIC        DAT
   B:00B0H.1       PUBLIC        CLK
   D:00C8H         PUBLIC        T2CON
+  B:00B0H.2       PUBLIC        KEY
   D:00D0H         PUBLIC        PSW
   -------         PROC          _DELAY
   D:0006H         SYMBOL        mstime
@@ -98,11 +104,11 @@ SYMBOL TABLE OF MODULE:  .\Objects\Interrupt (MAIN)
   D:0006H         SYMBOL        i
   D:0004H         SYMBOL        j
   -------         ENDDO         
-  C:0121H         LINE#         18
-  C:0121H         LINE#         19
-  C:0121H         LINE#         21
-  C:0129H         LINE#         22
-  C:013FH         LINE#         23
+  C:012FH         LINE#         19
+  C:012FH         LINE#         20
+  C:012FH         LINE#         22
+  C:0137H         LINE#         23
+  C:014DH         LINE#         24
   -------         ENDPROC       _DELAY
   -------         PROC          _SENDBYTE_74HC164
   D:0007H         SYMBOL        byte
@@ -110,45 +116,51 @@ SYMBOL TABLE OF MODULE:  .\Objects\Interrupt (MAIN)
   D:0007H         SYMBOL        num
   D:0006H         SYMBOL        c
   -------         ENDDO         
-  C:0140H         LINE#         33
-  C:0140H         LINE#         34
-  C:0140H         LINE#         36
-  C:0146H         LINE#         37
-  C:0148H         LINE#         38
-  C:0148H         LINE#         39
-  C:014CH         LINE#         40
-  C:014EH         LINE#         41
-  C:0150H         LINE#         42
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/22/2019  17:17:38  PAGE 3
+  C:014EH         LINE#         34
+  C:014EH         LINE#         35
+  C:014EH         LINE#         37
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/22/2019  20:35:04  PAGE 3
 
 
-  C:0154H         LINE#         43
-  C:0158H         LINE#         44
+  C:0154H         LINE#         38
+  C:0156H         LINE#         39
+  C:0156H         LINE#         40
+  C:015AH         LINE#         41
+  C:015CH         LINE#         42
+  C:015EH         LINE#         43
+  C:0162H         LINE#         44
+  C:0166H         LINE#         45
   -------         ENDPROC       _SENDBYTE_74HC164
   -------         PROC          CONFIGEXTINT0
-  C:0177H         LINE#         56
-  C:0177H         LINE#         57
-  C:0177H         LINE#         58
-  C:0179H         LINE#         59
-  C:017BH         LINE#         60
-  C:017DH         LINE#         61
+  C:0185H         LINE#         57
+  C:0185H         LINE#         58
+  C:0185H         LINE#         59
+  C:0187H         LINE#         60
+  C:0189H         LINE#         61
+  C:018BH         LINE#         62
   -------         ENDPROC       CONFIGEXTINT0
   -------         PROC          EXTINT0
-  C:00E7H         LINE#         70
-  C:00FAH         LINE#         72
-  C:0102H         LINE#         73
-  C:0110H         LINE#         74
+  C:00E7H         LINE#         71
+  C:00FAH         LINE#         73
+  C:00FCH         LINE#         74
+  C:0103H         LINE#         75
+  C:0106H         LINE#         76
+  C:0106H         LINE#         77
+  C:010EH         LINE#         78
+  C:011CH         LINE#         79
+  C:011CH         LINE#         80
+  C:011EH         LINE#         81
   -------         ENDPROC       EXTINT0
   -------         PROC          MAIN
-  C:0159H         LINE#         78
-  C:0159H         LINE#         79
-  C:0159H         LINE#         80
-  C:015CH         LINE#         81
-  C:015FH         LINE#         82
-  C:015FH         LINE#         83
-  C:015FH         LINE#         84
-  C:0164H         LINE#         85
-  C:016BH         LINE#         86
+  C:0167H         LINE#         85
+  C:0167H         LINE#         86
+  C:0167H         LINE#         87
+  C:016AH         LINE#         88
+  C:016DH         LINE#         89
+  C:016DH         LINE#         90
+  C:016DH         LINE#         91
+  C:0172H         LINE#         92
+  C:0179H         LINE#         93
   -------         ENDPROC       MAIN
   -------         ENDMOD        MAIN
 
@@ -156,5 +168,5 @@ SYMBOL TABLE OF MODULE:  .\Objects\Interrupt (MAIN)
   C:0092H         PUBLIC        ?C?UIDIV
   -------         ENDMOD        ?C?UIDIV
 
-Program Size: data=11.0 xdata=0 code=387
+Program Size: data=11.0 xdata=0 code=401
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
