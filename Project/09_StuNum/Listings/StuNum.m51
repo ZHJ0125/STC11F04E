@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    10/15/2019  20:00:46  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    10/16/2019  08:18:02  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
@@ -59,7 +59,7 @@ SEGMENT                              DATA_GROUP
   +--> ?CO?MAIN
 
 
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/15/2019  20:00:46  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/16/2019  08:18:02  PAGE 2
 
 
 
@@ -96,11 +96,11 @@ SYMBOL TABLE OF MODULE:  .\Objects\StuNum (MAIN)
   D:0006H         SYMBOL        i
   D:0004H         SYMBOL        j
   -------         ENDDO         
-  C:0123H         LINE#         60
-  C:0123H         LINE#         61
+  C:0123H         LINE#         62
   C:0123H         LINE#         63
-  C:012BH         LINE#         64
-  C:0141H         LINE#         65
+  C:0123H         LINE#         65
+  C:012BH         LINE#         66
+  C:0141H         LINE#         67
   -------         ENDPROC       _DELAY_MS
   C:0142H         SYMBOL        L?0030
   -------         PROC          L?0029
@@ -112,58 +112,58 @@ SYMBOL TABLE OF MODULE:  .\Objects\StuNum (MAIN)
   D:0007H         SYMBOL        num
   D:0006H         SYMBOL        c
   -------         ENDDO         
-  C:0146H         LINE#         74
-  C:0146H         LINE#         75
+  C:0146H         LINE#         76
   C:0146H         LINE#         77
-  C:014CH         LINE#         78
-  C:014EH         LINE#         79
-  C:014EH         LINE#         80
-  C:0152H         LINE#         81
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/15/2019  20:00:46  PAGE 3
+  C:0146H         LINE#         79
+  C:014CH         LINE#         80
+  C:014EH         LINE#         81
+  C:014EH         LINE#         82
+  C:0152H         LINE#         83
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/16/2019  08:18:02  PAGE 3
 
 
-  C:0154H         LINE#         82
-  C:0156H         LINE#         83
-  C:015AH         LINE#         84
-  C:015EH         LINE#         85
+  C:0154H         LINE#         84
+  C:0156H         LINE#         85
+  C:015AH         LINE#         86
+  C:015EH         LINE#         87
   -------         ENDPROC       _SENDBYTE_74HC164
   -------         PROC          _TEST_LIGHT
   D:0001H         SYMBOL        num
-  C:00DEH         LINE#         448
-  C:00DEH         LINE#         449
   C:00DEH         LINE#         450
-  C:00E1H         LINE#         451
-  C:00E8H         LINE#         452
-  C:00EBH         LINE#         453
-  C:00EEH         LINE#         454
-  C:00F1H         LINE#         456
-  C:00F7H         LINE#         457
-  C:00FAH         LINE#         458
-  C:00FDH         LINE#         459
-  C:0100H         LINE#         461
-  C:0106H         LINE#         462
-  C:0109H         LINE#         463
-  C:010CH         LINE#         464
-  C:010FH         LINE#         466
-  C:0115H         LINE#         467
-  C:0118H         LINE#         468
-  C:011BH         LINE#         469
-  C:011EH         LINE#         470
+  C:00DEH         LINE#         451
+  C:00DEH         LINE#         452
+  C:00E1H         LINE#         453
+  C:00E8H         LINE#         454
+  C:00EBH         LINE#         455
+  C:00EEH         LINE#         456
+  C:00F1H         LINE#         458
+  C:00F7H         LINE#         459
+  C:00FAH         LINE#         460
+  C:00FDH         LINE#         461
+  C:0100H         LINE#         463
+  C:0106H         LINE#         464
+  C:0109H         LINE#         465
+  C:010CH         LINE#         466
+  C:010FH         LINE#         468
+  C:0115H         LINE#         469
+  C:0118H         LINE#         470
+  C:011BH         LINE#         471
+  C:011EH         LINE#         472
   -------         ENDPROC       _TEST_LIGHT
   -------         PROC          MAIN
   -------         DO            
   D:0008H         SYMBOL        i
   D:000AH         SYMBOL        delay
   -------         ENDDO         
-  C:004EH         LINE#         475
-  C:004EH         LINE#         476
+  C:004EH         LINE#         477
   C:004EH         LINE#         478
-  C:004EH         LINE#         479
   C:004EH         LINE#         480
-  C:0053H         LINE#         481
-  C:0053H         LINE#         482
-  C:0059H         LINE#         483
-  C:0085H         LINE#         484
+  C:004EH         LINE#         481
+  C:004EH         LINE#         482
+  C:0053H         LINE#         483
+  C:0053H         LINE#         484
+  C:0059H         LINE#         485
+  C:0085H         LINE#         486
   -------         ENDPROC       MAIN
   -------         ENDMOD        MAIN
 

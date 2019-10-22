@@ -12,6 +12,8 @@ uchar code duan[]={0x81,0xD7,0xC8,0xC2,0x96,0xA2,0xA0,0xC7,0x80,0x82,0xff};
 
 // 定义学号
 // uchar STUNUM[12]=201723010237;
+//uint STUNUM[12] = {2,0,1,7,2,3,0,1,0,2,3,7};
+//uchar SHOW[4] = {10,10,10,10};
 
 // 定义显示学号的二维数组
 uchar code student[][4]={{10,10,10, 2}, 
@@ -484,8 +486,6 @@ void main()
 		}
 	}
 }
-
-
 
 
 

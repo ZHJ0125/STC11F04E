@@ -1,4 +1,4 @@
-C51 COMPILER V9.57.0.0   MAIN                                                              10/15/2019 20:00:46 PAGE 1   
+C51 COMPILER V9.57.0.0   MAIN                                                              10/16/2019 08:17:40 PAGE 1   
 
 
 C51 COMPILER V9.57.0.0, COMPILATION OF MODULE MAIN
@@ -22,495 +22,495 @@ line level    source
   12          
   13          // 定义学号
   14          // uchar STUNUM[12]=201723010237;
-  15          
-  16          // 定义显示学号的二维数组
-  17          uchar code student[][4]={{10,10,10, 2}, 
-  18                                   {10,10, 2, 0},
-  19                                   {10, 2, 0, 1},
-  20                                   { 2, 0, 1, 7},
-  21                                   { 0, 1, 7, 2},
-  22                                   { 1, 7, 2, 3},
-  23                                   { 7, 2, 3, 0},
-  24                                   { 2, 3, 0, 1},
-  25                                   { 3, 0, 1, 0},
-  26                                   { 0, 1, 0, 2},
-  27                                   { 1, 0, 2, 3},
-  28                                   { 0, 2, 3, 7},
-  29                                   { 2, 3, 7,10},
-  30                                   { 3, 7,10,10},
-  31                                   { 7,10,10,10},
-  32                                   {10,10,10,10}};
-  33          //uchar code student[][4]={
-  34          //  {duan[10],duan[10],duan[10], STUNUM[0]}, 
-  35          //  {duan[10],duan[10], STUNUM[0], STUNUM[1]},
-  36          //  {duan[10], STUNUM[0], STUNUM[1], STUNUM[2]},
-  37          //  {STUNUM[0], STUNUM[1], STUNUM[2], STUNUM[3]},
-  38          //  {STUNUM[1], STUNUM[2], STUNUM[3], STUNUM[4]},
-  39          //  {STUNUM[2], STUNUM[3], STUNUM[4], STUNUM[5]},
-  40          //  {STUNUM[3], STUNUM[4], STUNUM[5], STUNUM[6]},
-  41          //  {STUNUM[4], STUNUM[5], STUNUM[6], STUNUM[7]},
-  42          //  {STUNUM[5], STUNUM[6], STUNUM[7], STUNUM[8]},
-  43          //  {STUNUM[6], STUNUM[7], STUNUM[8], STUNUM[9]},
-  44          //  {STUNUM[7], STUNUM[8], STUNUM[9], STUNUM[10]},
-  45          //  {STUNUM[8], STUNUM[9], STUNUM[10], STUNUM[11]},
-  46          //  {STUNUM[9], STUNUM[10], STUNUM[11],duan[10]},
-  47          //  {STUNUM[10], STUNUM[11],duan[10],duan[10]},
-  48          //  {STUNUM[11],duan[10],duan[10],duan[10]},
-  49          //  {duan[10],duan[10],duan[10],duan[10]}
-  50          //};
-  51                               
-  52          
-  53          
-  54          /**********************************************************
-C51 COMPILER V9.57.0.0   MAIN                                                              10/15/2019 20:00:46 PAGE 2   
+  15          //uint STUNUM[12] = {2,0,1,7,2,3,0,1,0,2,3,7};
+  16          //uchar SHOW[4] = {10,10,10,10};
+  17          
+  18          // 定义显示学号的二维数组
+  19          uchar code student[][4]={{10,10,10, 2}, 
+  20                                   {10,10, 2, 0},
+  21                                   {10, 2, 0, 1},
+  22                                   { 2, 0, 1, 7},
+  23                                   { 0, 1, 7, 2},
+  24                                   { 1, 7, 2, 3},
+  25                                   { 7, 2, 3, 0},
+  26                                   { 2, 3, 0, 1},
+  27                                   { 3, 0, 1, 0},
+  28                                   { 0, 1, 0, 2},
+  29                                   { 1, 0, 2, 3},
+  30                                   { 0, 2, 3, 7},
+  31                                   { 2, 3, 7,10},
+  32                                   { 3, 7,10,10},
+  33                                   { 7,10,10,10},
+  34                                   {10,10,10,10}};
+  35          //uchar code student[][4]={
+  36          //  {duan[10],duan[10],duan[10], STUNUM[0]}, 
+  37          //  {duan[10],duan[10], STUNUM[0], STUNUM[1]},
+  38          //  {duan[10], STUNUM[0], STUNUM[1], STUNUM[2]},
+  39          //  {STUNUM[0], STUNUM[1], STUNUM[2], STUNUM[3]},
+  40          //  {STUNUM[1], STUNUM[2], STUNUM[3], STUNUM[4]},
+  41          //  {STUNUM[2], STUNUM[3], STUNUM[4], STUNUM[5]},
+  42          //  {STUNUM[3], STUNUM[4], STUNUM[5], STUNUM[6]},
+  43          //  {STUNUM[4], STUNUM[5], STUNUM[6], STUNUM[7]},
+  44          //  {STUNUM[5], STUNUM[6], STUNUM[7], STUNUM[8]},
+  45          //  {STUNUM[6], STUNUM[7], STUNUM[8], STUNUM[9]},
+  46          //  {STUNUM[7], STUNUM[8], STUNUM[9], STUNUM[10]},
+  47          //  {STUNUM[8], STUNUM[9], STUNUM[10], STUNUM[11]},
+  48          //  {STUNUM[9], STUNUM[10], STUNUM[11],duan[10]},
+  49          //  {STUNUM[10], STUNUM[11],duan[10],duan[10]},
+  50          //  {STUNUM[11],duan[10],duan[10],duan[10]},
+  51          //  {duan[10],duan[10],duan[10],duan[10]}
+  52          //};
+  53                               
+  54          
+C51 COMPILER V9.57.0.0   MAIN                                                              10/16/2019 08:17:40 PAGE 2   
 
-  55          *  函数名称：低精度延时函数
-  56          *  日期：2019-9-7
-  57          *  姓名：ZhangHJ
-  58          *  说明：嵌套循环延时
-  59          ***********************************************************/
-  60          void delay_ms(unsigned int mstime)
-  61          {
-  62   1        int i,j;
-  63   1        for(i=mstime; i>=0; i--)
-  64   1          for(j=112; j>=0; j--);
-  65   1      }
-  66          
-  67          
-  68          /**********************************************************
-  69          *  函数名称：74HC164发送Byte数据函数
-  70          *  日期：2019-9-29
-  71          *  姓名：ZhangHJ
-  72          *  说明：74HC164移位寄存器输入一字节数据发给寄存器
-  73          ***********************************************************/
-  74          void SendByte_74HC164(uchar byte)
-  75          {
-  76   1        uchar num,c;
-  77   1        num=duan[byte];
-  78   1        for(c=0; c<8; c++)
-  79   1        {
-  80   2          DAT=num&0x01;   // P3^0 --> 0000 000x
-  81   2          CLK=0;          // 制造一个上升沿
-  82   2          CLK=1;
-  83   2          num>>=1;        // 将数据发送到寄存器
-  84   2        }
-  85   1      }
-  86          
-  87          
+  55          
+  56          /**********************************************************
+  57          *  函数名称：低精度延时函数
+  58          *  日期：2019-9-7
+  59          *  姓名：ZhangHJ
+  60          *  说明：嵌套循环延时
+  61          ***********************************************************/
+  62          void delay_ms(unsigned int mstime)
+  63          {
+  64   1        int i,j;
+  65   1        for(i=mstime; i>=0; i--)
+  66   1          for(j=112; j>=0; j--);
+  67   1      }
+  68          
+  69          
+  70          /**********************************************************
+  71          *  函数名称：74HC164发送Byte数据函数
+  72          *  日期：2019-9-29
+  73          *  姓名：ZhangHJ
+  74          *  说明：74HC164移位寄存器输入一字节数据发给寄存器
+  75          ***********************************************************/
+  76          void SendByte_74HC164(uchar byte)
+  77          {
+  78   1        uchar num,c;
+  79   1        num=duan[byte];
+  80   1        for(c=0; c<8; c++)
+  81   1        {
+  82   2          DAT=num&0x01;   // P3^0 --> 0000 000x
+  83   2          CLK=0;          // 制造一个上升沿
+  84   2          CLK=1;
+  85   2          num>>=1;        // 将数据发送到寄存器
+  86   2        }
+  87   1      }
   88          
   89          
-  90          /**********************************************************
-  91          *  函数名称：独立帧显示函数
-  92          *  日期：2019-10-15
-  93          *  姓名：ZhangHJ
-  94          *  说明：实现4个数码管滚动显示学号的效果
-  95          *        数码管引脚低电平有效,首先关闭位选信号,然后给寄存器发送数据(开启段选),
-  96          *        开启位选控制并延时一段时间以显示数字,最后关闭位选信号清屏.
-  97          ***********************************************************/
-  98          //void test_light_byte1()                     // 2
-  99          //{
- 100          //  P1 |= 0x0f;             // 关掉位选
- 101          //  SendByte_74HC164(2);    // 开启段选
- 102          //  P1 &= 0xfe;             // 开启位选
- 103          //  delay_ms(DELAY_TIME);   // 延时显示
- 104          //  P1 |= 0x0f;             // 关掉位选
- 105          //}
- 106          //void test_light_byte2()                     // 20
- 107          //{
- 108          //  P1 |= 0x0f;             // 关掉位选
- 109          //  SendByte_74HC164(2);    // 开启段选
- 110          //  P1 &= 0xfd;             // 开启位选
- 111          //  delay_ms(DELAY_TIME);   // 延时显示
- 112          //  P1 |= 0x0f;             // 关掉位选
- 113          //  
- 114          //  SendByte_74HC164(0);    // 开启段选
- 115          //  P1 &= 0xfe;             // 开启位选
- 116          //  delay_ms(DELAY_TIME);   // 延时显示
-C51 COMPILER V9.57.0.0   MAIN                                                              10/15/2019 20:00:46 PAGE 3   
+  90          
+  91          
+  92          /**********************************************************
+  93          *  函数名称：独立帧显示函数
+  94          *  日期：2019-10-15
+  95          *  姓名：ZhangHJ
+  96          *  说明：实现4个数码管滚动显示学号的效果
+  97          *        数码管引脚低电平有效,首先关闭位选信号,然后给寄存器发送数据(开启段选),
+  98          *        开启位选控制并延时一段时间以显示数字,最后关闭位选信号清屏.
+  99          ***********************************************************/
+ 100          //void test_light_byte1()                     // 2
+ 101          //{
+ 102          //  P1 |= 0x0f;             // 关掉位选
+ 103          //  SendByte_74HC164(2);    // 开启段选
+ 104          //  P1 &= 0xfe;             // 开启位选
+ 105          //  delay_ms(DELAY_TIME);   // 延时显示
+ 106          //  P1 |= 0x0f;             // 关掉位选
+ 107          //}
+ 108          //void test_light_byte2()                     // 20
+ 109          //{
+ 110          //  P1 |= 0x0f;             // 关掉位选
+ 111          //  SendByte_74HC164(2);    // 开启段选
+ 112          //  P1 &= 0xfd;             // 开启位选
+ 113          //  delay_ms(DELAY_TIME);   // 延时显示
+ 114          //  P1 |= 0x0f;             // 关掉位选
+ 115          //  
+ 116          //  SendByte_74HC164(0);    // 开启段选
+C51 COMPILER V9.57.0.0   MAIN                                                              10/16/2019 08:17:40 PAGE 3   
 
- 117          //  P1 |= 0x0f;             // 关掉位选
- 118          //}
- 119          //void test_light_byte3()                     // 201
- 120          //{
- 121          //  P1 |= 0x0f;             // 关掉位选
- 122          //  SendByte_74HC164(2);    // 开启段选
- 123          //  P1 &= 0xfb;             // 开启位选
- 124          //  delay_ms(DELAY_TIME);   // 延时显示
- 125          //  P1 |= 0x0f;             // 关掉位选
- 126          //  
- 127          //  SendByte_74HC164(0);    // 开启段选
- 128          //  P1 &= 0xfd;             // 开启位选
- 129          //  delay_ms(DELAY_TIME);   // 延时显示
- 130          //  P1 |= 0x0f;             // 关掉位选
- 131          //  
- 132          //  SendByte_74HC164(1);    // 开启段选
- 133          //  P1 &= 0xfe;             // 开启位选
- 134          //  delay_ms(DELAY_TIME);   // 延时显示
- 135          //  P1 |= 0x0f;             // 关掉位选
- 136          //}
- 137          //void test_light_byte4()                     // 2017
- 138          //{
- 139          //  P1 |= 0x0f;             // 关掉位选
- 140          //  SendByte_74HC164(2);    // 开启段选
- 141          //  P1 &= 0xf7;             // 开启位选
- 142          //  delay_ms(DELAY_TIME);   // 延时显示
- 143          //  P1 |= 0x0f;             // 关掉位选
- 144          //  
- 145          //  SendByte_74HC164(0);    // 开启段选
- 146          //  P1 &= 0xfb;             // 开启位选
- 147          //  delay_ms(DELAY_TIME);   // 延时显示
- 148          //  P1 |= 0x0f;             // 关掉位选
- 149          //  
- 150          //  SendByte_74HC164(1);    // 开启段选
- 151          //  P1 &= 0xfd;             // 开启位选
- 152          //  delay_ms(DELAY_TIME);   // 延时显示
- 153          //  P1 |= 0x0f;             // 关掉位选
- 154          //  
- 155          //  SendByte_74HC164(7);    // 开启段选
- 156          //  P1 &= 0xfe;             // 开启位选
- 157          //  delay_ms(DELAY_TIME);   // 延时显示
- 158          //  P1 |= 0x0f;             // 关掉位选
- 159          //}
- 160          //void test_light_byte5()                     // 0172
- 161          //{
- 162          //  P1 |= 0x0f;             // 关掉位选
- 163          //  SendByte_74HC164(0);    // 开启段选
- 164          //  P1 &= 0xf7;             // 开启位选
- 165          //  delay_ms(DELAY_TIME);   // 延时显示
- 166          //  P1 |= 0x0f;             // 关掉位选
- 167          //  
- 168          //  SendByte_74HC164(1);    // 开启段选
- 169          //  P1 &= 0xfb;             // 开启位选
- 170          //  delay_ms(DELAY_TIME);   // 延时显示
- 171          //  P1 |= 0x0f;             // 关掉位选
- 172          //  
- 173          //  SendByte_74HC164(7);    // 开启段选
- 174          //  P1 &= 0xfd;             // 开启位选
- 175          //  delay_ms(DELAY_TIME);   // 延时显示
- 176          //  P1 |= 0x0f;             // 关掉位选
- 177          //  
- 178          //  SendByte_74HC164(2);    // 开启段选
-C51 COMPILER V9.57.0.0   MAIN                                                              10/15/2019 20:00:46 PAGE 4   
+ 117          //  P1 &= 0xfe;             // 开启位选
+ 118          //  delay_ms(DELAY_TIME);   // 延时显示
+ 119          //  P1 |= 0x0f;             // 关掉位选
+ 120          //}
+ 121          //void test_light_byte3()                     // 201
+ 122          //{
+ 123          //  P1 |= 0x0f;             // 关掉位选
+ 124          //  SendByte_74HC164(2);    // 开启段选
+ 125          //  P1 &= 0xfb;             // 开启位选
+ 126          //  delay_ms(DELAY_TIME);   // 延时显示
+ 127          //  P1 |= 0x0f;             // 关掉位选
+ 128          //  
+ 129          //  SendByte_74HC164(0);    // 开启段选
+ 130          //  P1 &= 0xfd;             // 开启位选
+ 131          //  delay_ms(DELAY_TIME);   // 延时显示
+ 132          //  P1 |= 0x0f;             // 关掉位选
+ 133          //  
+ 134          //  SendByte_74HC164(1);    // 开启段选
+ 135          //  P1 &= 0xfe;             // 开启位选
+ 136          //  delay_ms(DELAY_TIME);   // 延时显示
+ 137          //  P1 |= 0x0f;             // 关掉位选
+ 138          //}
+ 139          //void test_light_byte4()                     // 2017
+ 140          //{
+ 141          //  P1 |= 0x0f;             // 关掉位选
+ 142          //  SendByte_74HC164(2);    // 开启段选
+ 143          //  P1 &= 0xf7;             // 开启位选
+ 144          //  delay_ms(DELAY_TIME);   // 延时显示
+ 145          //  P1 |= 0x0f;             // 关掉位选
+ 146          //  
+ 147          //  SendByte_74HC164(0);    // 开启段选
+ 148          //  P1 &= 0xfb;             // 开启位选
+ 149          //  delay_ms(DELAY_TIME);   // 延时显示
+ 150          //  P1 |= 0x0f;             // 关掉位选
+ 151          //  
+ 152          //  SendByte_74HC164(1);    // 开启段选
+ 153          //  P1 &= 0xfd;             // 开启位选
+ 154          //  delay_ms(DELAY_TIME);   // 延时显示
+ 155          //  P1 |= 0x0f;             // 关掉位选
+ 156          //  
+ 157          //  SendByte_74HC164(7);    // 开启段选
+ 158          //  P1 &= 0xfe;             // 开启位选
+ 159          //  delay_ms(DELAY_TIME);   // 延时显示
+ 160          //  P1 |= 0x0f;             // 关掉位选
+ 161          //}
+ 162          //void test_light_byte5()                     // 0172
+ 163          //{
+ 164          //  P1 |= 0x0f;             // 关掉位选
+ 165          //  SendByte_74HC164(0);    // 开启段选
+ 166          //  P1 &= 0xf7;             // 开启位选
+ 167          //  delay_ms(DELAY_TIME);   // 延时显示
+ 168          //  P1 |= 0x0f;             // 关掉位选
+ 169          //  
+ 170          //  SendByte_74HC164(1);    // 开启段选
+ 171          //  P1 &= 0xfb;             // 开启位选
+ 172          //  delay_ms(DELAY_TIME);   // 延时显示
+ 173          //  P1 |= 0x0f;             // 关掉位选
+ 174          //  
+ 175          //  SendByte_74HC164(7);    // 开启段选
+ 176          //  P1 &= 0xfd;             // 开启位选
+ 177          //  delay_ms(DELAY_TIME);   // 延时显示
+ 178          //  P1 |= 0x0f;             // 关掉位选
+C51 COMPILER V9.57.0.0   MAIN                                                              10/16/2019 08:17:40 PAGE 4   
 
- 179          //  P1 &= 0xfe;             // 开启位选
- 180          //  delay_ms(DELAY_TIME);   // 延时显示
- 181          //  P1 |= 0x0f;             // 关掉位选
- 182          //}
- 183          //void test_light_byte6()                     // 1723
- 184          //{
- 185          //  P1 |= 0x0f;             // 关掉位选
- 186          //  SendByte_74HC164(1);    // 开启段选
- 187          //  P1 &= 0xf7;             // 开启位选
- 188          //  delay_ms(DELAY_TIME);   // 延时显示
- 189          //  P1 |= 0x0f;             // 关掉位选
- 190          //  
- 191          //  SendByte_74HC164(7);    // 开启段选
- 192          //  P1 &= 0xfb;             // 开启位选
- 193          //  delay_ms(DELAY_TIME);   // 延时显示
- 194          //  P1 |= 0x0f;             // 关掉位选
- 195          //  
- 196          //  SendByte_74HC164(2);    // 开启段选
- 197          //  P1 &= 0xfd;             // 开启位选
- 198          //  delay_ms(DELAY_TIME);   // 延时显示
- 199          //  P1 |= 0x0f;             // 关掉位选
- 200          //  
- 201          //  SendByte_74HC164(3);    // 开启段选
- 202          //  P1 &= 0xfe;             // 开启位选
- 203          //  delay_ms(DELAY_TIME);   // 延时显示
- 204          //  P1 |= 0x0f;             // 关掉位选
- 205          //}
- 206          //void test_light_byte7()                     // 7230
- 207          //{
- 208          //  P1 |= 0x0f;             // 关掉位选
- 209          //  SendByte_74HC164(7);    // 开启段选
- 210          //  P1 &= 0xf7;             // 开启位选
- 211          //  delay_ms(DELAY_TIME);   // 延时显示
- 212          //  P1 |= 0x0f;             // 关掉位选
- 213          //  
- 214          //  SendByte_74HC164(2);    // 开启段选
- 215          //  P1 &= 0xfb;             // 开启位选
- 216          //  delay_ms(DELAY_TIME);   // 延时显示
- 217          //  P1 |= 0x0f;             // 关掉位选
- 218          //  
- 219          //  SendByte_74HC164(3);    // 开启段选
- 220          //  P1 &= 0xfd;             // 开启位选
- 221          //  delay_ms(DELAY_TIME);   // 延时显示
- 222          //  P1 |= 0x0f;             // 关掉位选
- 223          //  
- 224          //  SendByte_74HC164(0);    // 开启段选
- 225          //  P1 &= 0xfe;             // 开启位选
- 226          //  delay_ms(DELAY_TIME);   // 延时显示
- 227          //  P1 |= 0x0f;             // 关掉位选
- 228          //}
- 229          //void test_light_byte8()                     // 2301
- 230          //{
- 231          //  P1 |= 0x0f;             // 关掉位选
- 232          //  SendByte_74HC164(2);    // 开启段选
- 233          //  P1 &= 0xf7;             // 开启位选
- 234          //  delay_ms(DELAY_TIME);   // 延时显示
- 235          //  P1 |= 0x0f;             // 关掉位选
- 236          //  
- 237          //  SendByte_74HC164(3);    // 开启段选
- 238          //  P1 &= 0xfb;             // 开启位选
- 239          //  delay_ms(DELAY_TIME);   // 延时显示
- 240          //  P1 |= 0x0f;             // 关掉位选
-C51 COMPILER V9.57.0.0   MAIN                                                              10/15/2019 20:00:46 PAGE 5   
+ 179          //  
+ 180          //  SendByte_74HC164(2);    // 开启段选
+ 181          //  P1 &= 0xfe;             // 开启位选
+ 182          //  delay_ms(DELAY_TIME);   // 延时显示
+ 183          //  P1 |= 0x0f;             // 关掉位选
+ 184          //}
+ 185          //void test_light_byte6()                     // 1723
+ 186          //{
+ 187          //  P1 |= 0x0f;             // 关掉位选
+ 188          //  SendByte_74HC164(1);    // 开启段选
+ 189          //  P1 &= 0xf7;             // 开启位选
+ 190          //  delay_ms(DELAY_TIME);   // 延时显示
+ 191          //  P1 |= 0x0f;             // 关掉位选
+ 192          //  
+ 193          //  SendByte_74HC164(7);    // 开启段选
+ 194          //  P1 &= 0xfb;             // 开启位选
+ 195          //  delay_ms(DELAY_TIME);   // 延时显示
+ 196          //  P1 |= 0x0f;             // 关掉位选
+ 197          //  
+ 198          //  SendByte_74HC164(2);    // 开启段选
+ 199          //  P1 &= 0xfd;             // 开启位选
+ 200          //  delay_ms(DELAY_TIME);   // 延时显示
+ 201          //  P1 |= 0x0f;             // 关掉位选
+ 202          //  
+ 203          //  SendByte_74HC164(3);    // 开启段选
+ 204          //  P1 &= 0xfe;             // 开启位选
+ 205          //  delay_ms(DELAY_TIME);   // 延时显示
+ 206          //  P1 |= 0x0f;             // 关掉位选
+ 207          //}
+ 208          //void test_light_byte7()                     // 7230
+ 209          //{
+ 210          //  P1 |= 0x0f;             // 关掉位选
+ 211          //  SendByte_74HC164(7);    // 开启段选
+ 212          //  P1 &= 0xf7;             // 开启位选
+ 213          //  delay_ms(DELAY_TIME);   // 延时显示
+ 214          //  P1 |= 0x0f;             // 关掉位选
+ 215          //  
+ 216          //  SendByte_74HC164(2);    // 开启段选
+ 217          //  P1 &= 0xfb;             // 开启位选
+ 218          //  delay_ms(DELAY_TIME);   // 延时显示
+ 219          //  P1 |= 0x0f;             // 关掉位选
+ 220          //  
+ 221          //  SendByte_74HC164(3);    // 开启段选
+ 222          //  P1 &= 0xfd;             // 开启位选
+ 223          //  delay_ms(DELAY_TIME);   // 延时显示
+ 224          //  P1 |= 0x0f;             // 关掉位选
+ 225          //  
+ 226          //  SendByte_74HC164(0);    // 开启段选
+ 227          //  P1 &= 0xfe;             // 开启位选
+ 228          //  delay_ms(DELAY_TIME);   // 延时显示
+ 229          //  P1 |= 0x0f;             // 关掉位选
+ 230          //}
+ 231          //void test_light_byte8()                     // 2301
+ 232          //{
+ 233          //  P1 |= 0x0f;             // 关掉位选
+ 234          //  SendByte_74HC164(2);    // 开启段选
+ 235          //  P1 &= 0xf7;             // 开启位选
+ 236          //  delay_ms(DELAY_TIME);   // 延时显示
+ 237          //  P1 |= 0x0f;             // 关掉位选
+ 238          //  
+ 239          //  SendByte_74HC164(3);    // 开启段选
+ 240          //  P1 &= 0xfb;             // 开启位选
+C51 COMPILER V9.57.0.0   MAIN                                                              10/16/2019 08:17:40 PAGE 5   
 
- 241          //  
- 242          //  SendByte_74HC164(0);    // 开启段选
- 243          //  P1 &= 0xfd;             // 开启位选
- 244          //  delay_ms(DELAY_TIME);   // 延时显示
- 245          //  P1 |= 0x0f;             // 关掉位选
- 246          //  
- 247          //  SendByte_74HC164(1);    // 开启段选
- 248          //  P1 &= 0xfe;             // 开启位选
- 249          //  delay_ms(DELAY_TIME);   // 延时显示
- 250          //  P1 |= 0x0f;             // 关掉位选
- 251          //}
- 252          //void test_light_byte9()                       // 3010
- 253          //{
- 254          //  P1 |= 0x0f;             // 关掉位选
- 255          //  SendByte_74HC164(3);    // 开启段选
- 256          //  P1 &= 0xf7;             // 开启位选
- 257          //  delay_ms(DELAY_TIME);   // 延时显示
- 258          //  P1 |= 0x0f;             // 关掉位选
- 259          //  
- 260          //  SendByte_74HC164(0);    // 开启段选
- 261          //  P1 &= 0xfb;             // 开启位选
- 262          //  delay_ms(DELAY_TIME);   // 延时显示
- 263          //  P1 |= 0x0f;             // 关掉位选
- 264          //  
- 265          //  SendByte_74HC164(1);    // 开启段选
- 266          //  P1 &= 0xfd;             // 开启位选
- 267          //  delay_ms(DELAY_TIME);   // 延时显示
- 268          //  P1 |= 0x0f;             // 关掉位选
- 269          //  
- 270          //  SendByte_74HC164(0);    // 开启段选
- 271          //  P1 &= 0xfe;             // 开启位选
- 272          //  delay_ms(DELAY_TIME);   // 延时显示
- 273          //  P1 |= 0x0f;             // 关掉位选
- 274          //}
- 275          //void test_light_byte10()                        // 0102
- 276          //{
- 277          //  P1 |= 0x0f;             // 关掉位选
- 278          //  SendByte_74HC164(0);    // 开启段选
- 279          //  P1 &= 0xf7;             // 开启位选
- 280          //  delay_ms(DELAY_TIME);   // 延时显示
- 281          //  P1 |= 0x0f;             // 关掉位选
- 282          //  
- 283          //  SendByte_74HC164(1);    // 开启段选
- 284          //  P1 &= 0xfb;             // 开启位选
- 285          //  delay_ms(DELAY_TIME);   // 延时显示
- 286          //  P1 |= 0x0f;             // 关掉位选
- 287          //  
- 288          //  SendByte_74HC164(0);    // 开启段选
- 289          //  P1 &= 0xfd;             // 开启位选
- 290          //  delay_ms(DELAY_TIME);   // 延时显示
- 291          //  P1 |= 0x0f;             // 关掉位选
- 292          //  
- 293          //  SendByte_74HC164(2);    // 开启段选
- 294          //  P1 &= 0xfe;             // 开启位选
- 295          //  delay_ms(DELAY_TIME);   // 延时显示
- 296          //  P1 |= 0x0f;             // 关掉位选
- 297          //}
- 298          //void test_light_byte11()                        // 1023
- 299          //{
- 300          //  P1 |= 0x0f;             // 关掉位选
- 301          //  SendByte_74HC164(1);    // 开启段选
- 302          //  P1 &= 0xf7;             // 开启位选
-C51 COMPILER V9.57.0.0   MAIN                                                              10/15/2019 20:00:46 PAGE 6   
+ 241          //  delay_ms(DELAY_TIME);   // 延时显示
+ 242          //  P1 |= 0x0f;             // 关掉位选
+ 243          //  
+ 244          //  SendByte_74HC164(0);    // 开启段选
+ 245          //  P1 &= 0xfd;             // 开启位选
+ 246          //  delay_ms(DELAY_TIME);   // 延时显示
+ 247          //  P1 |= 0x0f;             // 关掉位选
+ 248          //  
+ 249          //  SendByte_74HC164(1);    // 开启段选
+ 250          //  P1 &= 0xfe;             // 开启位选
+ 251          //  delay_ms(DELAY_TIME);   // 延时显示
+ 252          //  P1 |= 0x0f;             // 关掉位选
+ 253          //}
+ 254          //void test_light_byte9()                       // 3010
+ 255          //{
+ 256          //  P1 |= 0x0f;             // 关掉位选
+ 257          //  SendByte_74HC164(3);    // 开启段选
+ 258          //  P1 &= 0xf7;             // 开启位选
+ 259          //  delay_ms(DELAY_TIME);   // 延时显示
+ 260          //  P1 |= 0x0f;             // 关掉位选
+ 261          //  
+ 262          //  SendByte_74HC164(0);    // 开启段选
+ 263          //  P1 &= 0xfb;             // 开启位选
+ 264          //  delay_ms(DELAY_TIME);   // 延时显示
+ 265          //  P1 |= 0x0f;             // 关掉位选
+ 266          //  
+ 267          //  SendByte_74HC164(1);    // 开启段选
+ 268          //  P1 &= 0xfd;             // 开启位选
+ 269          //  delay_ms(DELAY_TIME);   // 延时显示
+ 270          //  P1 |= 0x0f;             // 关掉位选
+ 271          //  
+ 272          //  SendByte_74HC164(0);    // 开启段选
+ 273          //  P1 &= 0xfe;             // 开启位选
+ 274          //  delay_ms(DELAY_TIME);   // 延时显示
+ 275          //  P1 |= 0x0f;             // 关掉位选
+ 276          //}
+ 277          //void test_light_byte10()                        // 0102
+ 278          //{
+ 279          //  P1 |= 0x0f;             // 关掉位选
+ 280          //  SendByte_74HC164(0);    // 开启段选
+ 281          //  P1 &= 0xf7;             // 开启位选
+ 282          //  delay_ms(DELAY_TIME);   // 延时显示
+ 283          //  P1 |= 0x0f;             // 关掉位选
+ 284          //  
+ 285          //  SendByte_74HC164(1);    // 开启段选
+ 286          //  P1 &= 0xfb;             // 开启位选
+ 287          //  delay_ms(DELAY_TIME);   // 延时显示
+ 288          //  P1 |= 0x0f;             // 关掉位选
+ 289          //  
+ 290          //  SendByte_74HC164(0);    // 开启段选
+ 291          //  P1 &= 0xfd;             // 开启位选
+ 292          //  delay_ms(DELAY_TIME);   // 延时显示
+ 293          //  P1 |= 0x0f;             // 关掉位选
+ 294          //  
+ 295          //  SendByte_74HC164(2);    // 开启段选
+ 296          //  P1 &= 0xfe;             // 开启位选
+ 297          //  delay_ms(DELAY_TIME);   // 延时显示
+ 298          //  P1 |= 0x0f;             // 关掉位选
+ 299          //}
+ 300          //void test_light_byte11()                        // 1023
+ 301          //{
+ 302          //  P1 |= 0x0f;             // 关掉位选
+C51 COMPILER V9.57.0.0   MAIN                                                              10/16/2019 08:17:40 PAGE 6   
 
- 303          //  delay_ms(DELAY_TIME);   // 延时显示
- 304          //  P1 |= 0x0f;             // 关掉位选
- 305          //  
- 306          //  SendByte_74HC164(0);    // 开启段选
- 307          //  P1 &= 0xfb;             // 开启位选
- 308          //  delay_ms(DELAY_TIME);   // 延时显示
- 309          //  P1 |= 0x0f;             // 关掉位选
- 310          //  
- 311          //  SendByte_74HC164(2);    // 开启段选
- 312          //  P1 &= 0xfd;             // 开启位选
- 313          //  delay_ms(DELAY_TIME);   // 延时显示
- 314          //  P1 |= 0x0f;             // 关掉位选
- 315          //  
- 316          //  SendByte_74HC164(3);    // 开启段选
- 317          //  P1 &= 0xfe;             // 开启位选
- 318          //  delay_ms(DELAY_TIME);   // 延时显示
- 319          //  P1 |= 0x0f;             // 关掉位选
- 320          //}
- 321          //void test_light_byte12()                        // 0237
- 322          //{
- 323          //  P1 |= 0x0f;             // 关掉位选
- 324          //  SendByte_74HC164(0);    // 开启段选
- 325          //  P1 &= 0xf7;             // 开启位选
- 326          //  delay_ms(DELAY_TIME);   // 延时显示
- 327          //  P1 |= 0x0f;             // 关掉位选
- 328          //  
- 329          //  SendByte_74HC164(2);    // 开启段选
- 330          //  P1 &= 0xfb;             // 开启位选
- 331          //  delay_ms(DELAY_TIME);   // 延时显示
- 332          //  P1 |= 0x0f;             // 关掉位选
- 333          //  
- 334          //  SendByte_74HC164(3);    // 开启段选
- 335          //  P1 &= 0xfd;             // 开启位选
- 336          //  delay_ms(DELAY_TIME);   // 延时显示
- 337          //  P1 |= 0x0f;             // 关掉位选
- 338          //  
- 339          //  SendByte_74HC164(7);    // 开启段选
- 340          //  P1 &= 0xfe;             // 开启位选
- 341          //  delay_ms(DELAY_TIME);   // 延时显示
- 342          //  P1 |= 0x0f;             // 关掉位选
- 343          //}
- 344          //void test_light_byte13()                          // 237
- 345          //{
- 346          //  P1 |= 0x0f;             // 关掉位选
- 347          //  SendByte_74HC164(2);    // 开启段选
- 348          //  P1 &= 0xf7;             // 开启位选
- 349          //  delay_ms(DELAY_TIME);   // 延时显示
- 350          //  P1 |= 0x0f;             // 关掉位选
- 351          //  
- 352          //  SendByte_74HC164(3);    // 开启段选
- 353          //  P1 &= 0xfb;             // 开启位选
- 354          //  delay_ms(DELAY_TIME);   // 延时显示
- 355          //  P1 |= 0x0f;             // 关掉位选
- 356          //  
- 357          //  SendByte_74HC164(7);    // 开启段选
- 358          //  P1 &= 0xfd;             // 开启位选
- 359          //  delay_ms(DELAY_TIME);   // 延时显示
- 360          //  P1 |= 0x0f;             // 关掉位选
- 361          //}
- 362          //void test_light_byte14()                          // 37
- 363          //{
- 364          //  P1 |= 0x0f;             // 关掉位选
-C51 COMPILER V9.57.0.0   MAIN                                                              10/15/2019 20:00:46 PAGE 7   
+ 303          //  SendByte_74HC164(1);    // 开启段选
+ 304          //  P1 &= 0xf7;             // 开启位选
+ 305          //  delay_ms(DELAY_TIME);   // 延时显示
+ 306          //  P1 |= 0x0f;             // 关掉位选
+ 307          //  
+ 308          //  SendByte_74HC164(0);    // 开启段选
+ 309          //  P1 &= 0xfb;             // 开启位选
+ 310          //  delay_ms(DELAY_TIME);   // 延时显示
+ 311          //  P1 |= 0x0f;             // 关掉位选
+ 312          //  
+ 313          //  SendByte_74HC164(2);    // 开启段选
+ 314          //  P1 &= 0xfd;             // 开启位选
+ 315          //  delay_ms(DELAY_TIME);   // 延时显示
+ 316          //  P1 |= 0x0f;             // 关掉位选
+ 317          //  
+ 318          //  SendByte_74HC164(3);    // 开启段选
+ 319          //  P1 &= 0xfe;             // 开启位选
+ 320          //  delay_ms(DELAY_TIME);   // 延时显示
+ 321          //  P1 |= 0x0f;             // 关掉位选
+ 322          //}
+ 323          //void test_light_byte12()                        // 0237
+ 324          //{
+ 325          //  P1 |= 0x0f;             // 关掉位选
+ 326          //  SendByte_74HC164(0);    // 开启段选
+ 327          //  P1 &= 0xf7;             // 开启位选
+ 328          //  delay_ms(DELAY_TIME);   // 延时显示
+ 329          //  P1 |= 0x0f;             // 关掉位选
+ 330          //  
+ 331          //  SendByte_74HC164(2);    // 开启段选
+ 332          //  P1 &= 0xfb;             // 开启位选
+ 333          //  delay_ms(DELAY_TIME);   // 延时显示
+ 334          //  P1 |= 0x0f;             // 关掉位选
+ 335          //  
+ 336          //  SendByte_74HC164(3);    // 开启段选
+ 337          //  P1 &= 0xfd;             // 开启位选
+ 338          //  delay_ms(DELAY_TIME);   // 延时显示
+ 339          //  P1 |= 0x0f;             // 关掉位选
+ 340          //  
+ 341          //  SendByte_74HC164(7);    // 开启段选
+ 342          //  P1 &= 0xfe;             // 开启位选
+ 343          //  delay_ms(DELAY_TIME);   // 延时显示
+ 344          //  P1 |= 0x0f;             // 关掉位选
+ 345          //}
+ 346          //void test_light_byte13()                          // 237
+ 347          //{
+ 348          //  P1 |= 0x0f;             // 关掉位选
+ 349          //  SendByte_74HC164(2);    // 开启段选
+ 350          //  P1 &= 0xf7;             // 开启位选
+ 351          //  delay_ms(DELAY_TIME);   // 延时显示
+ 352          //  P1 |= 0x0f;             // 关掉位选
+ 353          //  
+ 354          //  SendByte_74HC164(3);    // 开启段选
+ 355          //  P1 &= 0xfb;             // 开启位选
+ 356          //  delay_ms(DELAY_TIME);   // 延时显示
+ 357          //  P1 |= 0x0f;             // 关掉位选
+ 358          //  
+ 359          //  SendByte_74HC164(7);    // 开启段选
+ 360          //  P1 &= 0xfd;             // 开启位选
+ 361          //  delay_ms(DELAY_TIME);   // 延时显示
+ 362          //  P1 |= 0x0f;             // 关掉位选
+ 363          //}
+ 364          //void test_light_byte14()                          // 37
+C51 COMPILER V9.57.0.0   MAIN                                                              10/16/2019 08:17:40 PAGE 7   
 
- 365          //  SendByte_74HC164(3);    // 开启段选
- 366          //  P1 &= 0xf7;             // 开启位选
- 367          //  delay_ms(DELAY_TIME);   // 延时显示
- 368          //  P1 |= 0x0f;             // 关掉位选
- 369          //  
- 370          //  SendByte_74HC164(7);    // 开启段选
- 371          //  P1 &= 0xfb;             // 开启位选
- 372          //  delay_ms(DELAY_TIME);   // 延时显示
- 373          //  P1 |= 0x0f;             // 关掉位选
- 374          //}
- 375          //void test_light_byte15()                          // 7
- 376          //{
- 377          //  P1 |= 0x0f;             // 关掉位选
- 378          //  SendByte_74HC164(7);    // 开启段选
- 379          //  P1 &= 0xf7;             // 开启位选
- 380          //  delay_ms(DELAY_TIME);   // 延时显示
- 381          //  P1 |= 0x0f;             // 关掉位选
- 382          //}
- 383          
- 384          // 滚动显示学号
- 385          //void main()
- 386          //{
- 387          //  uint i;
- 388          //  while(1)
- 389          //  {
- 390          //    for(i=0;i<SHOW_LOOP;i++)
- 391          //    test_light_byte1();
- 392          //    //delay_ms(5);
- 393          //    for(i=0;i<SHOW_LOOP;i++)
- 394          //    test_light_byte2();
- 395          //    //delay_ms(5);
- 396          //    for(i=0;i<SHOW_LOOP;i++)
- 397          //    test_light_byte3();
- 398          //    //delay_ms(5);
- 399          //    for(i=0;i<SHOW_LOOP;i++)
- 400          //    test_light_byte4();
- 401          //    //delay_ms(5);
- 402          //    for(i=0;i<SHOW_LOOP;i++)
- 403          //    test_light_byte5();
- 404          //    //delay_ms(5);
- 405          //    for(i=0;i<SHOW_LOOP;i++)
- 406          //    test_light_byte6();
- 407          //    //delay_ms(5);
- 408          //    for(i=0;i<SHOW_LOOP;i++)
- 409          //    test_light_byte7();
- 410          //    //delay_ms(5);
- 411          //    for(i=0;i<SHOW_LOOP;i++)
- 412          //    test_light_byte8();
- 413          //    //delay_ms(5);
- 414          //    for(i=0;i<SHOW_LOOP;i++)
- 415          //    test_light_byte9();
- 416          //    //delay_ms(5);
- 417          //    for(i=0;i<SHOW_LOOP;i++)
- 418          //    test_light_byte10();
- 419          //    //delay_ms(5);
- 420          //    for(i=0;i<SHOW_LOOP;i++)
- 421          //    test_light_byte11();
- 422          //    //delay_ms(5);
- 423          //    for(i=0;i<SHOW_LOOP;i++)
- 424          //    test_light_byte12();
- 425          //    //delay_ms(5);
- 426          //    for(i=0;i<SHOW_LOOP;i++)
-C51 COMPILER V9.57.0.0   MAIN                                                              10/15/2019 20:00:46 PAGE 8   
+ 365          //{
+ 366          //  P1 |= 0x0f;             // 关掉位选
+ 367          //  SendByte_74HC164(3);    // 开启段选
+ 368          //  P1 &= 0xf7;             // 开启位选
+ 369          //  delay_ms(DELAY_TIME);   // 延时显示
+ 370          //  P1 |= 0x0f;             // 关掉位选
+ 371          //  
+ 372          //  SendByte_74HC164(7);    // 开启段选
+ 373          //  P1 &= 0xfb;             // 开启位选
+ 374          //  delay_ms(DELAY_TIME);   // 延时显示
+ 375          //  P1 |= 0x0f;             // 关掉位选
+ 376          //}
+ 377          //void test_light_byte15()                          // 7
+ 378          //{
+ 379          //  P1 |= 0x0f;             // 关掉位选
+ 380          //  SendByte_74HC164(7);    // 开启段选
+ 381          //  P1 &= 0xf7;             // 开启位选
+ 382          //  delay_ms(DELAY_TIME);   // 延时显示
+ 383          //  P1 |= 0x0f;             // 关掉位选
+ 384          //}
+ 385          
+ 386          // 滚动显示学号
+ 387          //void main()
+ 388          //{
+ 389          //  uint i;
+ 390          //  while(1)
+ 391          //  {
+ 392          //    for(i=0;i<SHOW_LOOP;i++)
+ 393          //    test_light_byte1();
+ 394          //    //delay_ms(5);
+ 395          //    for(i=0;i<SHOW_LOOP;i++)
+ 396          //    test_light_byte2();
+ 397          //    //delay_ms(5);
+ 398          //    for(i=0;i<SHOW_LOOP;i++)
+ 399          //    test_light_byte3();
+ 400          //    //delay_ms(5);
+ 401          //    for(i=0;i<SHOW_LOOP;i++)
+ 402          //    test_light_byte4();
+ 403          //    //delay_ms(5);
+ 404          //    for(i=0;i<SHOW_LOOP;i++)
+ 405          //    test_light_byte5();
+ 406          //    //delay_ms(5);
+ 407          //    for(i=0;i<SHOW_LOOP;i++)
+ 408          //    test_light_byte6();
+ 409          //    //delay_ms(5);
+ 410          //    for(i=0;i<SHOW_LOOP;i++)
+ 411          //    test_light_byte7();
+ 412          //    //delay_ms(5);
+ 413          //    for(i=0;i<SHOW_LOOP;i++)
+ 414          //    test_light_byte8();
+ 415          //    //delay_ms(5);
+ 416          //    for(i=0;i<SHOW_LOOP;i++)
+ 417          //    test_light_byte9();
+ 418          //    //delay_ms(5);
+ 419          //    for(i=0;i<SHOW_LOOP;i++)
+ 420          //    test_light_byte10();
+ 421          //    //delay_ms(5);
+ 422          //    for(i=0;i<SHOW_LOOP;i++)
+ 423          //    test_light_byte11();
+ 424          //    //delay_ms(5);
+ 425          //    for(i=0;i<SHOW_LOOP;i++)
+ 426          //    test_light_byte12();
+C51 COMPILER V9.57.0.0   MAIN                                                              10/16/2019 08:17:40 PAGE 8   
 
- 427          //    test_light_byte13();
- 428          //    //delay_ms(5);
- 429          //    for(i=0;i<SHOW_LOOP;i++)
- 430          //    test_light_byte14();
- 431          //    //delay_ms(5);
- 432          //    for(i=0;i<SHOW_LOOP;i++)
- 433          //    test_light_byte15();
- 434          //    delay_ms(100);
- 435          //  }
- 436          //}
- 437          
- 438          
+ 427          //    //delay_ms(5);
+ 428          //    for(i=0;i<SHOW_LOOP;i++)
+ 429          //    test_light_byte13();
+ 430          //    //delay_ms(5);
+ 431          //    for(i=0;i<SHOW_LOOP;i++)
+ 432          //    test_light_byte14();
+ 433          //    //delay_ms(5);
+ 434          //    for(i=0;i<SHOW_LOOP;i++)
+ 435          //    test_light_byte15();
+ 436          //    delay_ms(100);
+ 437          //  }
+ 438          //}
  439          
- 440          /**********************************************************
- 441          *  函数名称：数码管显示函数
- 442          *  日期：2019-10-15
- 443          *  姓名：ZhangHJ
- 444          *  说明：控制数码管显示数字
- 445          *        数码管引脚低电平有效,首先关闭位选信号,然后给寄存器发送数据(开启段选),
- 446          *        开启位选控制并延时一段时间以显示数字,最后关闭位选信号清屏.
- 447          ***********************************************************/
- 448          void test_light(uchar num[])
- 449          {
- 450   1        P1 |= 0x0f;             // 关掉位选
- 451   1        SendByte_74HC164(num[0]);   // 开启段选
- 452   1        P1 &= 0xf7;             // 开启位选
- 453   1        delay_ms(DELAY_TIME);   // 延时显示
- 454   1        P1 |= 0x0f;             // 关掉位选
- 455   1        
- 456   1        SendByte_74HC164(num[1]);   // 开启段选
- 457   1        P1 &= 0xfb;             // 开启位选
- 458   1        delay_ms(DELAY_TIME);   // 延时显示
- 459   1        P1 |= 0x0f;             // 关掉位选
- 460   1        
- 461   1        SendByte_74HC164(num[2]);   // 开启段选
- 462   1        P1 &= 0xfd;             // 开启位选
- 463   1        delay_ms(DELAY_TIME);   // 延时显示
- 464   1        P1 |= 0x0f;             // 关掉位选
- 465   1        
- 466   1        SendByte_74HC164(num[3]);   // 开启段选
- 467   1        P1 &= 0xfe;             // 开启位选
- 468   1        delay_ms(DELAY_TIME);   // 延时显示
- 469   1        P1 |= 0x0f;             // 关掉位选
- 470   1      }
- 471          
- 472          
+ 440          
+ 441          
+ 442          /**********************************************************
+ 443          *  函数名称：数码管显示函数
+ 444          *  日期：2019-10-15
+ 445          *  姓名：ZhangHJ
+ 446          *  说明：控制数码管显示数字
+ 447          *        数码管引脚低电平有效,首先关闭位选信号,然后给寄存器发送数据(开启段选),
+ 448          *        开启位选控制并延时一段时间以显示数字,最后关闭位选信号清屏.
+ 449          ***********************************************************/
+ 450          void test_light(uchar num[])
+ 451          {
+ 452   1        P1 |= 0x0f;             // 关掉位选
+ 453   1        SendByte_74HC164(num[0]);   // 开启段选
+ 454   1        P1 &= 0xf7;             // 开启位选
+ 455   1        delay_ms(DELAY_TIME);   // 延时显示
+ 456   1        P1 |= 0x0f;             // 关掉位选
+ 457   1        
+ 458   1        SendByte_74HC164(num[1]);   // 开启段选
+ 459   1        P1 &= 0xfb;             // 开启位选
+ 460   1        delay_ms(DELAY_TIME);   // 延时显示
+ 461   1        P1 |= 0x0f;             // 关掉位选
+ 462   1        
+ 463   1        SendByte_74HC164(num[2]);   // 开启段选
+ 464   1        P1 &= 0xfd;             // 开启位选
+ 465   1        delay_ms(DELAY_TIME);   // 延时显示
+ 466   1        P1 |= 0x0f;             // 关掉位选
+ 467   1        
+ 468   1        SendByte_74HC164(num[3]);   // 开启段选
+ 469   1        P1 &= 0xfe;             // 开启位选
+ 470   1        delay_ms(DELAY_TIME);   // 延时显示
+ 471   1        P1 |= 0x0f;             // 关掉位选
+ 472   1      }
  473          
- 474          // 通过二维数组显示滚动数据
- 475          void main()
- 476          {
- 477   1        uint i,delay;
- 478   1        while(1)
- 479   1        {
- 480   2          for(i=0;i<16;i++)
- 481   2          {
- 482   3            for(delay=120;delay>0;delay--)
- 483   3              test_light(student[i]);
- 484   3          }
- 485   2        }
- 486   1      }
- 487          
- 488          
-C51 COMPILER V9.57.0.0   MAIN                                                              10/15/2019 20:00:46 PAGE 9   
+ 474          
+ 475          
+ 476          // 通过二维数组显示滚动数据
+ 477          void main()
+ 478          {
+ 479   1        uint i,delay;
+ 480   1        while(1)
+ 481   1        {
+ 482   2          for(i=0;i<16;i++)
+ 483   2          {
+ 484   3            for(delay=120;delay>0;delay--)
+ 485   3              test_light(student[i]);
+ 486   3          }
+ 487   2        }
+ 488   1      }
+C51 COMPILER V9.57.0.0   MAIN                                                              10/16/2019 08:17:40 PAGE 9   
 
  489          
  490          
