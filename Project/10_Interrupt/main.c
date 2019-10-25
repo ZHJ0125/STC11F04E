@@ -1,4 +1,5 @@
 #include <reg52.h>
+#include <intrins.h>
 #define uchar unsigned char
 #define uint unsigned int
 
@@ -22,6 +23,33 @@ void delay(unsigned int mstime)
 	for(i=mstime; i>=0; i--)
 		for(j=114; j>=0; j--);
 }
+
+
+/**********************************************************
+*  函数名称：精确延时50ms函数
+*  日期：2019-10-25
+*  姓名：ZhangHJ
+*  说明：由STC-ISP自动生成
+***********************************************************/
+void Delay50ms()		//@11.0592MHz
+{
+	unsigned char i, j, k;
+
+	_nop_();
+	_nop_();
+	i = 3;
+	j = 26;
+	k = 223;
+	do
+	{
+		do
+		{
+			while (--k);
+		} while (--j);
+	} while (--i);
+}
+
+
 
 
 
@@ -70,14 +98,14 @@ void configExtInt0()
 ***********************************************************/
 void extInt0() interrupt 0
 {
-	EA = 0;						// 关闭总中断
-	delay(40);				// 延时防抖
+	EA = 0;							// 关闭总中断
+	Delay50ms();				// 延时防抖
 	if(KEY == 0)
 	{
 		num ++;
 		num = num % 10;
 	}
-	EA = 1;						// 开启总中断
+	EA = 1;							// 开启总中断
 }
 
 
@@ -85,7 +113,7 @@ void extInt0() interrupt 0
 int main()
 {
 	configExtInt0();		// 配置外部中断0
-	P1 &= 0xf0;				// 位选全部选中
+	P1 &= 0xf0;					// 位选全部选中
 	while(1)
 	{
 		SendByte_74HC164(num);
