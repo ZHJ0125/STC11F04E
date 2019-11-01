@@ -1,0 +1,159 @@
+C51 COMPILER V9.57.0.0   MAIN                                                              11/01/2019 09:03:28 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: E:\MDK\install\Core\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\List
+                    -ings\main.lst) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <reg52.h>
+   2          #include <intrins.h>
+   3          #define uchar unsigned char
+   4          #define uint unsigned int
+   5          #define FOSC 11059200L
+   6          #define T1MS (65536-FOSC/12/1000)               // 1ms
+   7          
+   8          sbit DAT = P3^0;                                // 74HC164 数据输入端口
+   9          sbit CLK = P3^1;                                // 74HC164 时钟输入端口
+  10          sbit KEY = P3^2;                                // 按键端口
+  11          uint num = 0;                                   // 显示的数字
+  12          uint count;
+  13          
+  14          // 定义数码管段选(不加小数点0~9)
+  15          uchar code table1[]={0x81,0xD7,0xC8,0xC2,0x96,0xA2,0xA0,0xC7,0x80,0x82};
+  16          
+  17          /**********************************************************
+  18          *  函数名称：低精度延时函数
+  19          *  日期：2019-9-7
+  20          *  姓名：ZhangHJ
+  21          *  说明：嵌套循环延时
+  22          ***********************************************************/
+  23          void delay(unsigned int mstime)
+  24          {
+  25   1              int i,j;
+  26   1              for(i=mstime; i>=0; i--)
+  27   1                      for(j=114; j>=0; j--);
+  28   1      }
+  29          
+  30          
+  31          /**********************************************************
+  32          *  函数名称：精确延时50ms函数
+  33          *  日期：2019-10-25
+  34          *  姓名：ZhangHJ
+  35          *  说明：由STC-ISP自动生成
+  36          ***********************************************************/
+  37          //void Delay50ms()              //@11.0592MHz
+  38          //{
+  39          //      unsigned char i, j, k;
+  40          
+  41          //      _nop_();
+  42          //      _nop_();
+  43          //      i = 3;
+  44          //      j = 26;
+  45          //      k = 223;
+  46          //      do
+  47          //      {
+  48          //              do
+  49          //              {
+  50          //                      while (--k);
+  51          //              } while (--j);
+  52          //      } while (--i);
+  53          //}
+  54          
+C51 COMPILER V9.57.0.0   MAIN                                                              11/01/2019 09:03:28 PAGE 2   
+
+  55          
+  56          
+  57          
+  58          
+  59          /**********************************************************
+  60          *  函数名称：74HC164发送Byte数据函数
+  61          *  日期：2019-9-29
+  62          *  姓名：ZhangHJ
+  63          *  说明：74HC164移位寄存器输入一字节数据发给寄存器
+  64          ***********************************************************/
+  65          void SendByte_74HC164(uchar byte)
+  66          {
+  67   1              uchar num,c;
+  68   1              num=table1[byte];
+  69   1              for(c=0; c<8; c++)
+  70   1              {
+  71   2                      DAT=num&0x01;           // P3^0 --> 0000 000x
+  72   2                      CLK=0;                          // 制造一个上升沿
+  73   2                      CLK=1;
+  74   2                      num>>=1;                        // 将数据发送到寄存器
+  75   2              }
+  76   1      }
+  77          
+  78          
+  79          
+  80          /**********************************************************
+  81          *  函数名称：配置定时器T0方式1
+  82          *  日期：2019-11-1
+  83          *  姓名：ZhangHJ
+  84          *  说明：
+  85          ***********************************************************/
+  86          void configTimeInt0()
+  87          {
+  88   1              TMOD = 0x01;            // 定时器0模式1
+  89   1              TL0 = T1MS;                     // 装入初始数据
+  90   1              TH0 = T1MS >> 8;
+  91   1      //      TH0 = 0;
+  92   1              // 配置控制寄存器TCON
+  93   1              TR0 = 1;                        // 允许T0计数
+  94   1              ET0 = 1;                        // 开启T0中断
+  95   1              EA = 1;                         // 开启总中断
+  96   1              count = 0;
+  97   1      }
+  98          
+  99          
+ 100          /**********************************************************
+ 101          *  函数名称：定时器T0方式1服务函数
+ 102          *  日期：2019-11-1
+ 103          *  姓名：ZhangHJ
+ 104          *  说明：中断服务函数功能为
+ 105          ***********************************************************/
+ 106          void tm0_isr() interrupt 1
+ 107          {
+ 108   1      //      EA = 0;                                         // 关闭总中断
+ 109   1              TL0 = T1MS;
+ 110   1              TH0 = T1MS >> 8;
+ 111   1      //      TH0 = 0;
+ 112   1              if(count-- == 0)
+ 113   1              {
+ 114   2                      count = 1000;
+ 115   2                      num ++;
+ 116   2                      num = num % 10;
+C51 COMPILER V9.57.0.0   MAIN                                                              11/01/2019 09:03:28 PAGE 3   
+
+ 117   2              }
+ 118   1      //      EA = 1;                                         // 开启总中断
+ 119   1      }
+ 120          
+ 121          
+ 122          int main()
+ 123          {
+ 124   1              configTimeInt0();                       // 配置定时器 T0
+ 125   1              P1 &= 0xf0;                                     // 位选全部选中
+ 126   1              while(1)
+ 127   1              {
+ 128   2                      SendByte_74HC164(num);
+ 129   2                      delay(600);
+ 130   2              }
+ 131   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    180    ----
+   CONSTANT SIZE    =     10    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      4    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
