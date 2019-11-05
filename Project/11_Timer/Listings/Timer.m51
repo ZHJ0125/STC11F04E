@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    11/01/2019  09:37:06  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    11/05/2019  22:15:10  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
@@ -23,22 +23,22 @@ LINK MAP OF MODULE:  .\Objects\Timer (MAIN)
 
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
-            DATA    0008H     0004H     UNIT         ?DT?MAIN
-            IDATA   000CH     0001H     UNIT         ?STACK
+            DATA    0008H     0005H     UNIT         ?DT?MAIN
+            IDATA   000DH     0001H     UNIT         ?STACK
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
-            CODE    0003H     0005H     UNIT         ?C_INITSEG
-                    0008H     0003H                  *** GAP ***
+                    0003H     0008H                  *** GAP ***
             CODE    000BH     0003H     ABSOLUTE     
             CODE    000EH     008CH     UNIT         ?C_C51STARTUP
             CODE    009AH     0055H     UNIT         ?C?LIB_CODE
-            CODE    00EFH     0053H     UNIT         ?PR?TM0_ISR?MAIN
-            CODE    0142H     001FH     UNIT         ?PR?_DELAY?MAIN
-            CODE    0161H     0019H     UNIT         ?PR?_SENDBYTE_74HC164?MAIN
-            CODE    017AH     0015H     UNIT         ?PR?CONFIGTIMEINT0?MAIN
-            CODE    018FH     0014H     UNIT         ?PR?MAIN?MAIN
-            CODE    01A3H     000AH     UNIT         ?CO?MAIN
+            CODE    00EFH     0052H     UNIT         ?PR?TM0_ISR?MAIN
+            CODE    0141H     001FH     UNIT         ?PR?_DELAY?MAIN
+            CODE    0160H     0019H     UNIT         ?PR?_SENDBYTE_74HC164?MAIN
+            CODE    0179H     0014H     UNIT         ?PR?MAIN?MAIN
+            CODE    018DH     0013H     UNIT         ?PR?CONFIGTIMEINT0?MAIN
+            CODE    01A0H     000CH     UNIT         ?C_INITSEG
+            CODE    01ACH     000AH     UNIT         ?CO?MAIN
 
 
 
@@ -59,7 +59,7 @@ SEGMENT
 
 ?PR?_SENDBYTE_74HC164?MAIN
   +--> ?CO?MAIN
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/01/2019  09:37:06  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/05/2019  22:15:10  PAGE 2
 
 
 
@@ -76,25 +76,27 @@ SYMBOL TABLE OF MODULE:  .\Objects\Timer (MAIN)
   D:00B0H         PUBLIC        P3
   B:00A8H.7       PUBLIC        EA
   D:00A8H         PUBLIC        IE
-  C:0142H         PUBLIC        _delay
-  C:0161H         PUBLIC        _SendByte_74HC164
+  C:0141H         PUBLIC        _delay
+  C:0160H         PUBLIC        _SendByte_74HC164
   D:00B8H         PUBLIC        IP
-  C:018FH         PUBLIC        main
+  C:0179H         PUBLIC        main
   D:0008H         PUBLIC        count
   D:0098H         PUBLIC        SCON
   D:0089H         PUBLIC        TMOD
   D:0088H         PUBLIC        TCON
-  C:01A3H         PUBLIC        table1
+  D:000AH         PUBLIC        LOOP
+  C:01ACH         PUBLIC        table1
+  D:008EH         PUBLIC        AUXR
   C:00EFH         PUBLIC        tm0_isr
   B:00A8H.1       PUBLIC        ET0
   D:008CH         PUBLIC        TH0
   D:008AH         PUBLIC        TL0
-  D:000AH         PUBLIC        num
+  D:000BH         PUBLIC        num
   B:0088H.4       PUBLIC        TR0
   B:00B0H.0       PUBLIC        DAT
   B:00B0H.1       PUBLIC        CLK
   D:00C8H         PUBLIC        T2CON
-  C:017AH         PUBLIC        configTimeInt0
+  C:018DH         PUBLIC        configTimeInt0
   D:00D0H         PUBLIC        PSW
   -------         PROC          _DELAY
   D:0006H         SYMBOL        mstime
@@ -102,11 +104,11 @@ SYMBOL TABLE OF MODULE:  .\Objects\Timer (MAIN)
   D:0006H         SYMBOL        i
   D:0004H         SYMBOL        j
   -------         ENDDO         
-  C:0142H         LINE#         23
-  C:0142H         LINE#         24
-  C:0142H         LINE#         26
-  C:014AH         LINE#         27
-  C:0160H         LINE#         28
+  C:0141H         LINE#         27
+  C:0141H         LINE#         28
+  C:0141H         LINE#         30
+  C:0149H         LINE#         31
+  C:015FH         LINE#         32
   -------         ENDPROC       _DELAY
   -------         PROC          _SENDBYTE_74HC164
   D:0007H         SYMBOL        byte
@@ -114,55 +116,55 @@ SYMBOL TABLE OF MODULE:  .\Objects\Timer (MAIN)
   D:0007H         SYMBOL        num
   D:0006H         SYMBOL        c
   -------         ENDDO         
-  C:0161H         LINE#         38
-  C:0161H         LINE#         39
-  C:0161H         LINE#         41
-  C:0167H         LINE#         42
-  C:0169H         LINE#         43
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/01/2019  09:37:06  PAGE 3
+  C:0160H         LINE#         44
+  C:0160H         LINE#         45
+  C:0160H         LINE#         48
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/05/2019  22:15:10  PAGE 3
 
 
-  C:0169H         LINE#         44
-  C:016DH         LINE#         45
-  C:016FH         LINE#         46
-  C:0171H         LINE#         47
-  C:0175H         LINE#         48
-  C:0179H         LINE#         49
+  C:0166H         LINE#         53
+  C:0168H         LINE#         54
+  C:0168H         LINE#         55
+  C:016CH         LINE#         56
+  C:016EH         LINE#         57
+  C:0170H         LINE#         58
+  C:0174H         LINE#         59
+  C:0178H         LINE#         60
   -------         ENDPROC       _SENDBYTE_74HC164
   -------         PROC          CONFIGTIMEINT0
-  C:017AH         LINE#         62
-  C:017AH         LINE#         63
-  C:017AH         LINE#         64
-  C:017DH         LINE#         65
-  C:0180H         LINE#         66
-  C:0183H         LINE#         69
-  C:0185H         LINE#         70
-  C:0187H         LINE#         71
-  C:0189H         LINE#         72
-  C:018EH         LINE#         73
+  C:018DH         LINE#         73
+  C:018DH         LINE#         74
+  C:018DH         LINE#         75
+  C:0190H         LINE#         76
+  C:0193H         LINE#         77
+  C:0196H         LINE#         78
+  C:0199H         LINE#         81
+  C:019BH         LINE#         82
+  C:019DH         LINE#         83
+  C:019FH         LINE#         84
   -------         ENDPROC       CONFIGTIMEINT0
   -------         PROC          TM0_ISR
-  C:00EFH         LINE#         82
-  C:0102H         LINE#         85
-  C:0105H         LINE#         86
-  C:0108H         LINE#         88
-  C:0115H         LINE#         89
-  C:0115H         LINE#         90
-  C:011BH         LINE#         91
-  C:0123H         LINE#         92
-  C:0131H         LINE#         93
-  C:0131H         LINE#         95
+  C:00EFH         LINE#         95
+  C:0102H         LINE#         98
+  C:0105H         LINE#         99
+  C:0108H         LINE#         101
+  C:0115H         LINE#         102
+  C:0115H         LINE#         103
+  C:011AH         LINE#         105
+  C:0122H         LINE#         106
+  C:0130H         LINE#         111
+  C:0130H         LINE#         113
   -------         ENDPROC       TM0_ISR
   -------         PROC          MAIN
-  C:018FH         LINE#         100
-  C:018FH         LINE#         101
-  C:018FH         LINE#         102
-  C:0192H         LINE#         103
-  C:0195H         LINE#         104
-  C:0195H         LINE#         105
-  C:0195H         LINE#         106
-  C:019AH         LINE#         107
-  C:01A1H         LINE#         108
+  C:0179H         LINE#         118
+  C:0179H         LINE#         119
+  C:0179H         LINE#         120
+  C:017CH         LINE#         121
+  C:017FH         LINE#         122
+  C:017FH         LINE#         123
+  C:017FH         LINE#         124
+  C:0184H         LINE#         125
+  C:018BH         LINE#         126
   -------         ENDPROC       MAIN
   -------         ENDMOD        MAIN
 
@@ -170,5 +172,5 @@ SYMBOL TABLE OF MODULE:  .\Objects\Timer (MAIN)
   C:009AH         PUBLIC        ?C?UIDIV
   -------         ENDMOD        ?C?UIDIV
 
-Program Size: data=13.0 xdata=0 code=426
+Program Size: data=14.0 xdata=0 code=430
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
