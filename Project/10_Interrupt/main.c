@@ -112,7 +112,7 @@ void extInt0() interrupt 0
 // 主函数功能：当按下按键KEY时,触发外部中断0,改变数码管显示的数值(0~9)
 int main()
 {
-	configExtInt0();		// 配置外部中断0
+	configExtInt0();			// 配置外部中断0
 	P1 &= 0xf0;					// 位选全部选中
 	while(1)
 	{
