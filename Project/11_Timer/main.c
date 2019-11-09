@@ -120,6 +120,6 @@ int main()
 	while(1)
 	{
 		SendByte_74HC164(num);
-		delay(120);
+		delay(60);
 	}
 }
