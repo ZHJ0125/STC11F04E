@@ -39,13 +39,13 @@
 
 # 工程导引
 
-功能 | 项目介绍 | 索引页面
+介绍 | 工程说明 | 索引页面
 ---|---|---
 延时函数测试 | 使用示波器测试延时函数的精确延时时间 | [00_Delay](https://github.com/ZHJ0125/STC11F04E/tree/master/Project/00_Delay)
 数码管静态显示 | 四个数码管同时循环显示数字0~9 | [01_Digital_Tube_Static_Display](https://github.com/ZHJ0125/STC11F04E/tree/master/Project/01_Digital_Tube_Static_Display)
 数码管动态显示 | 默认状态显示1234,按键INT0按下时显示4321 | [02_Digital_Tube_Dynamic_Display](https://github.com/ZHJ0125/STC11F04E/tree/master/Project/02_Digital_Tube_Dynamic_Display)
 DS18B20温度模块 | 数码管显示当前温度（保留一位小数） | [03_DS18B20](https://github.com/ZHJ0125/STC11F04E/tree/master/Project/03_DS18B20)
-DS1302时间模块 | 设置初始时间为“2019年10月4日18:55:00”并不断显示时间 | [04_DS1302](https://github.com/ZHJ0125/STC11F04E/tree/master/Project/04_DS1302)
+DS1302时间模块 | 设置初始时间为“2019年10月4日18:55:00”并持续显示时间 | [04_DS1302](https://github.com/ZHJ0125/STC11F04E/tree/master/Project/04_DS1302)
 时间和温度整合 | 数码管默认显示时间(初始化时间为“2019年10月4日18:55:00”),按下INT0按键后,会显示温度 | [05_FinalCode](https://github.com/ZHJ0125/STC11F04E/tree/master/Project/05_FinalCode)
 ESP8266模块 | 初始化ESP8266模块，连接实验室WiFi，初始化串口通信 | [06_ESP8266](https://github.com/ZHJ0125/STC11F04E/tree/master/Project/06_ESP8266)
 HC-SR04超声波模块 | 利用超声波模块循环测距，并在数码管上显示距离（单位厘米，保留一位小数） | [07_HC-SR04](https://github.com/ZHJ0125/STC11F04E/tree/master/Project/07_HC-SR04)
