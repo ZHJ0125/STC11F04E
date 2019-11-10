@@ -55,6 +55,9 @@ HC-SR04超声波模块 | 利用超声波模块循环测距，并在数码管上�
 定时器模块 | 定时1S,在数码管上循环显示0~9或循环点亮数码管的每一段（通过注释NUMBER_LOOP标志位，可以控制显示模式） | [11_Timer](https://github.com/ZHJ0125/STC11F04E/tree/master/Project/11_Timer)
 
 
+# HEX文件导引
+> 点击链接可以查看 [最新发布的 HEX 文件](https://github.com/ZHJ0125/STC11F04E/releases/tag/FourthVersion)
+
 
 # 项目博客
 > 数码管显示温度和时间
