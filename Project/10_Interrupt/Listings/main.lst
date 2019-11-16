@@ -1,4 +1,4 @@
-C51 COMPILER V9.57.0.0   MAIN                                                              10/25/2019 08:57:59 PAGE 1   
+C51 COMPILER V9.57.0.0   MAIN                                                              11/15/2019 08:17:06 PAGE 1   
 
 
 C51 COMPILER V9.57.0.0, COMPILATION OF MODULE MAIN
@@ -62,7 +62,7 @@ line level    source
   52          
   53          
   54          
-C51 COMPILER V9.57.0.0   MAIN                                                              10/25/2019 08:57:59 PAGE 2   
+C51 COMPILER V9.57.0.0   MAIN                                                              11/15/2019 08:17:06 PAGE 2   
 
   55          
   56          /**********************************************************
@@ -124,9 +124,9 @@ line level    source
  112          // 主函数功能：当按下按键KEY时,触发外部中断0,改变数码管显示的数值(0~9)
  113          int main()
  114          {
- 115   1        configExtInt0();    // 配置外部中断0
+ 115   1        configExtInt0();      // 配置外部中断0
  116   1        P1 &= 0xf0;         // 位选全部选中
-C51 COMPILER V9.57.0.0   MAIN                                                              10/25/2019 08:57:59 PAGE 3   
+C51 COMPILER V9.57.0.0   MAIN                                                              11/15/2019 08:17:06 PAGE 3   
 
  117   1        while(1)
  118   1        {
