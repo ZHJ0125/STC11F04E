@@ -1,9 +1,8 @@
-![](https://img.shields.io/badge/Creator-ZhangH.J.-success)
-![](https://img.shields.io/github/license/ZHJ0125/STC11F04E)
-![](https://img.shields.io/npm/v/drone.svg)
-![](https://img.shields.io/badge/language-C-9cf.svg)
-
-
+[![Creator](https://img.shields.io/badge/Creator-ZhangH.J.-success)](https://zhj0125.github.io/)
+[![Total visitor](https://visitor-count-badge.herokuapp.com/total.svg?repo_id=${https://github.com/ZHJ0125/STC11F04E})](https://github.com/ZHJ0125/STC11F04E/)
+![language](https://img.shields.io/badge/language-C-9cf.svg)
+[![last-commit](https://img.shields.io/github/last-commit/ZHJ0125/STC11F04E)](https://github.com/ZHJ0125/STC11F04E/commits/master)
+![license](https://img.shields.io/github/license/ZHJ0125/STC11F04E)
 
 # STC11F04E
 
