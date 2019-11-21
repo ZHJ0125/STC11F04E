@@ -1,3 +1,0 @@
-".\Objects\main.obj" 
-TO ".\Objects\Serial_Communication_Basis" 
-PRINT(".\Listings\Serial_Communication_Basis.m51") RAMSIZE(256) 

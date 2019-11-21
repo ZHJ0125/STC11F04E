@@ -28,7 +28,7 @@
     <TargetOption>
       <CLK51>45000000</CLK51>
       <OPTTT>
-        <gFlags>1</gFlags>
+        <gFlags>0</gFlags>
         <BeepAtEnd>1</BeepAtEnd>
         <RunSim>1</RunSim>
         <RunTarget>0</RunTarget>
@@ -116,24 +116,7 @@
         <tIfile></tIfile>
         <pMon></pMon>
       </DebugOpt>
-      <Breakpoint>
-        <Bp>
-          <Number>0</Number>
-          <Type>0</Type>
-          <LineNumber>47</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>main.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-      </Breakpoint>
+      <Breakpoint/>
       <Tracepoint>
         <THDelay>0</THDelay>
       </Tracepoint>
@@ -181,22 +164,10 @@
 
   <Group>
     <GroupName>Source Group 1</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
-    <File>
-      <GroupNumber>1</GroupNumber>
-      <FileNumber>1</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>1</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\main.c</PathWithFileName>
-      <FilenameWithoutPath>main.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
   </Group>
 
 </ProjectOpt>
