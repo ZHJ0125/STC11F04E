@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    11/21/2019  16:52:04  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    11/21/2019  16:57:52  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
@@ -59,7 +59,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\Serial_Communication_Basis (MAIN)
   D:0090H         PUBLIC        P1
   D:00B0H         PUBLIC        P3
   B:00A8H.7       PUBLIC        EA
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/21/2019  16:52:04  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/21/2019  16:57:52  PAGE 2
 
 
   D:00A8H         PUBLIC        IE

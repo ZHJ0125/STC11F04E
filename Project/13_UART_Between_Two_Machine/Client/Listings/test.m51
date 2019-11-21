@@ -1,0 +1,178 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    11/21/2019  22:00:21  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+E:\MDK\INSTALL\CORE\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\test PRINT (.\Listings\test.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  E:\MDK\INSTALL\CORE\C51\LIB\C51S.LIB (?C_STARTUP)
+  E:\MDK\INSTALL\CORE\C51\LIB\C51S.LIB (?C?UIDIV)
+
+
+LINK MAP OF MODULE:  .\Objects\test (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0002H     UNIT         ?DT?MAIN
+            IDATA   000AH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     001FH     UNIT         ?PR?_DELAY_MS?MAIN
+                    0022H     0001H                  *** GAP ***
+            CODE    0023H     0003H     ABSOLUTE     
+            CODE    0026H     0055H     UNIT         ?C?LIB_CODE
+            CODE    007BH     0033H     UNIT         ?PR?MAIN?MAIN
+            CODE    00AEH     0021H     UNIT         ?PR?UARTSERVICE?MAIN
+            CODE    00CFH     0019H     UNIT         ?PR?_SENDBYTE_74HC164?MAIN
+            CODE    00E8H     0019H     UNIT         ?PR?UARTCONFIG?MAIN
+            CODE    0101H     000CH     UNIT         ?C_C51STARTUP
+            CODE    010DH     000BH     UNIT         ?CO?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\test (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN
+  +--> ?PR?UARTCONFIG?MAIN
+  +--> ?PR?_SENDBYTE_74HC164?MAIN
+  +--> ?PR?_DELAY_MS?MAIN
+
+?PR?_SENDBYTE_74HC164?MAIN
+  +--> ?CO?MAIN
+
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/21/2019  22:00:21  PAGE 2
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\test (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  B:00A8H.7       PUBLIC        EA
+  D:00A8H         PUBLIC        IE
+  C:00CFH         PUBLIC        _SendByte_74HC164
+  B:00A8H.4       PUBLIC        ES
+  D:00B8H         PUBLIC        IP
+  B:0098H.0       PUBLIC        RI
+  B:0098H.1       PUBLIC        TI
+  C:007BH         PUBLIC        main
+  D:0099H         PUBLIC        SBUF
+  D:0087H         PUBLIC        PCON
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+  C:010DH         PUBLIC        tab
+  D:0008H         PUBLIC        show_data
+  D:008EH         PUBLIC        AUXR
+  D:008DH         PUBLIC        TH1
+  D:008BH         PUBLIC        TL1
+  C:0003H         PUBLIC        _delay_ms
+  B:0088H.6       PUBLIC        TR1
+  B:00B0H.0       PUBLIC        DAT
+  B:00B0H.1       PUBLIC        CLK
+  D:00C8H         PUBLIC        T2CON
+  C:00AEH         PUBLIC        UartService
+  C:00E8H         PUBLIC        UartConfig
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _DELAY_MS
+  D:0006H         SYMBOL        mstime
+  -------         DO            
+  D:0006H         SYMBOL        i
+  D:0004H         SYMBOL        j
+  -------         ENDDO         
+  C:0003H         LINE#         17
+  C:0003H         LINE#         18
+  C:0003H         LINE#         20
+  C:000BH         LINE#         21
+  C:0021H         LINE#         22
+  -------         ENDPROC       _DELAY_MS
+  -------         PROC          _SENDBYTE_74HC164
+  D:0007H         SYMBOL        byte
+  -------         DO            
+  D:0007H         SYMBOL        num
+  D:0006H         SYMBOL        c
+  -------         ENDDO         
+  C:00CFH         LINE#         32
+  C:00CFH         LINE#         33
+  C:00CFH         LINE#         35
+  C:00D5H         LINE#         36
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/21/2019  22:00:21  PAGE 3
+
+
+  C:00D7H         LINE#         37
+  C:00D7H         LINE#         38
+  C:00DBH         LINE#         39
+  C:00DDH         LINE#         40
+  C:00DFH         LINE#         41
+  C:00E3H         LINE#         42
+  C:00E7H         LINE#         43
+  -------         ENDPROC       _SENDBYTE_74HC164
+  -------         PROC          UARTCONFIG
+  C:00E8H         LINE#         59
+  C:00E8H         LINE#         60
+  C:00E8H         LINE#         61
+  C:00EBH         LINE#         62
+  C:00EEH         LINE#         63
+  C:00F1H         LINE#         64
+  C:00F4H         LINE#         65
+  C:00F7H         LINE#         66
+  C:00FAH         LINE#         67
+  C:00FCH         LINE#         68
+  C:00FEH         LINE#         69
+  C:0100H         LINE#         70
+  -------         ENDPROC       UARTCONFIG
+  -------         PROC          UARTSERVICE
+  -------         DO            
+  D:0007H         SYMBOL        temp
+  -------         ENDDO         
+  C:00AEH         LINE#         84
+  C:00B7H         LINE#         87
+  C:00B9H         LINE#         88
+  C:00BFH         LINE#         89
+  C:00C1H         LINE#         90
+  C:00C3H         LINE#         91
+  C:00C6H         LINE#         92
+  C:00C8H         LINE#         93
+  -------         ENDPROC       UARTSERVICE
+  -------         PROC          MAIN
+  C:007BH         LINE#         97
+  C:007BH         LINE#         98
+  C:007BH         LINE#         99
+  C:007EH         LINE#         100
+  C:0081H         LINE#         101
+  C:0081H         LINE#         102
+  C:0081H         LINE#         103
+  C:00A5H         LINE#         104
+  C:00ACH         LINE#         105
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        ?C?UIDIV
+  C:0026H         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+Program Size: data=11.0 xdata=0 code=279
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\UART_Between_Two_Machine" 
+PRINT(".\Listings\UART_Between_Two_Machine.m51") RAMSIZE(256) 

@@ -1,0 +1,173 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    11/21/2019  22:01:40  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+E:\MDK\INSTALL\CORE\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\UART_Between_Two_Machine PRINT (.\Listings\UART_Bet
+>> ween_Two_Machine.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  E:\MDK\INSTALL\CORE\C51\LIB\C51S.LIB (?C_STARTUP)
+  E:\MDK\INSTALL\CORE\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\UART_Between_Two_Machine (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0002H     UNIT         ?DT?MAIN
+            IDATA   000AH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0003H     ABSOLUTE     
+            CODE    0006H     008CH     UNIT         ?C_C51STARTUP
+            CODE    0092H     003CH     UNIT         ?PR?EXTINT0?MAIN
+            CODE    00CEH     0019H     UNIT         ?PR?UARTCONFIG?MAIN
+            CODE    00E7H     000FH     UNIT         ?PR?DELAY50MS?MAIN
+            CODE    00F6H     0008H     UNIT         ?PR?MAIN?MAIN
+            CODE    00FEH     0007H     UNIT         ?PR?CONFIGEXTINT0?MAIN
+            CODE    0105H     0004H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\UART_Between_Two_Machine (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?PR?EXTINT0?MAIN
+  +--> ?PR?DELAY50MS?MAIN
+
+*** NEW ROOT ***************************************************
+
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN
+  +--> ?PR?CONFIGEXTINT0?MAIN
+  +--> ?PR?UARTCONFIG?MAIN
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/21/2019  22:01:40  PAGE 2
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\UART_Between_Two_Machine (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  B:00A8H.7       PUBLIC        EA
+  C:00FEH         PUBLIC        configExtInt0
+  D:0008H         PUBLIC        number
+  D:00A8H         PUBLIC        IE
+  B:00A8H.4       PUBLIC        ES
+  D:00B8H         PUBLIC        IP
+  B:0098H.1       PUBLIC        TI
+  C:00F6H         PUBLIC        main
+  C:0092H         PUBLIC        extInt0
+  D:0099H         PUBLIC        SBUF
+  D:0087H         PUBLIC        PCON
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+  C:00E7H         PUBLIC        Delay50ms
+  D:0009H         PUBLIC        show_data
+  D:008EH         PUBLIC        AUXR
+  B:00A8H.0       PUBLIC        EX0
+  B:0088H.0       PUBLIC        IT0
+  D:008DH         PUBLIC        TH1
+  D:008BH         PUBLIC        TL1
+  B:0088H.6       PUBLIC        TR1
+  D:00C8H         PUBLIC        T2CON
+  B:00B0H.2       PUBLIC        KEY
+  C:00CEH         PUBLIC        UartConfig
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          DELAY50MS
+  -------         DO            
+  D:0007H         SYMBOL        i
+  D:0006H         SYMBOL        j
+  D:0005H         SYMBOL        k
+  -------         ENDDO         
+  C:00E7H         LINE#         18
+  C:00E7H         LINE#         19
+  C:00E7H         LINE#         22
+  C:00E8H         LINE#         23
+  C:00E9H         LINE#         24
+  C:00EBH         LINE#         25
+  C:00EDH         LINE#         26
+  C:00EFH         LINE#         28
+  C:00EFH         LINE#         30
+  C:00EFH         LINE#         31
+  C:00F1H         LINE#         32
+  C:00F3H         LINE#         33
+  C:00F5H         LINE#         34
+  -------         ENDPROC       DELAY50MS
+  -------         PROC          UARTCONFIG
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/21/2019  22:01:40  PAGE 3
+
+
+  C:00CEH         LINE#         50
+  C:00CEH         LINE#         51
+  C:00CEH         LINE#         52
+  C:00D1H         LINE#         53
+  C:00D4H         LINE#         54
+  C:00D7H         LINE#         55
+  C:00DAH         LINE#         56
+  C:00DDH         LINE#         57
+  C:00E0H         LINE#         58
+  C:00E2H         LINE#         59
+  C:00E4H         LINE#         60
+  C:00E6H         LINE#         61
+  -------         ENDPROC       UARTCONFIG
+  -------         PROC          CONFIGEXTINT0
+  C:00FEH         LINE#         73
+  C:00FEH         LINE#         74
+  C:00FEH         LINE#         75
+  C:0100H         LINE#         76
+  C:0102H         LINE#         77
+  C:0104H         LINE#         78
+  -------         ENDPROC       CONFIGEXTINT0
+  -------         PROC          EXTINT0
+  C:0092H         LINE#         89
+  C:00A1H         LINE#         91
+  C:00A3H         LINE#         92
+  C:00A6H         LINE#         93
+  C:00A9H         LINE#         94
+  C:00A9H         LINE#         95
+  C:00ABH         LINE#         96
+  C:00B4H         LINE#         97
+  C:00BAH         LINE#         98
+  C:00BDH         LINE#         99
+  C:00BFH         LINE#         100
+  C:00BFH         LINE#         101
+  C:00C1H         LINE#         102
+  -------         ENDPROC       EXTINT0
+  -------         PROC          MAIN
+  C:00F6H         LINE#         108
+  C:00F6H         LINE#         109
+  C:00F6H         LINE#         110
+  C:00F9H         LINE#         111
+  C:00FCH         LINE#         113
+  C:00FCH         LINE#         114
+  C:00FCH         LINE#         117
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+Program Size: data=11.0 xdata=0 code=265
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
