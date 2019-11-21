@@ -93,7 +93,9 @@ void UartService() interrupt 4
 }
 
 
-
+// 这是从机的功能函数，晶振11.0592MHz
+// 主函数功能：接收由主机发来的数据，并将其显示在数码管上
+// 注意：STC-ISP软件烧录时需要选择使用外部晶振
 void main()
 {
 	UartConfig();	// 配置串口
