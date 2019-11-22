@@ -56,6 +56,7 @@ HC-SR04超声波模块 | 利用超声波模块循环测距，并在数码管上�
 外部中断 | 当按下外部中断按键INT0时,触发外部中断0,改变数码管显示的数值(0~9) | [10_Interrupt](https://github.com/ZHJ0125/STC11F04E/tree/master/Project/10_Interrupt)
 定时器模块 | 定时1S,在数码管上循环显示0~9或循环点亮数码管的每一段（通过注释NUMBER_LOOP标志位，可以控制显示模式） | [11_Timer](https://github.com/ZHJ0125/STC11F04E/tree/master/Project/11_Timer)
 串口通信基础 | 从串口接收数据，并将接收到的数据再发送出去 | [12_Serial_Communication_Basis](https://github.com/ZHJ0125/STC11F04E/tree/master/Project/12_Serial_Communication_Basis)
+双机串口通信 | 效果是：主机可以通过外部中断按键，控制从机的数码管在0~9之间循环显示 | [13_UART_Between_Two_Machine](https://github.com/ZHJ0125/STC11F04E/tree/master/Project/13_UART_Between_Two_Machine)
 
 
 # HEX文件导引
