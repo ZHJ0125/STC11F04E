@@ -1,11 +1,10 @@
 #include <reg52.h>
 #include <intrins.h>
 #define uchar unsigned char
-#define uint unsigned int
 #define Hex2Char(x) ((x/10)*10+(x%10)-48)
 sbit DAT=P3^0;			// 74HC164 数据输入
 sbit CLK=P3^1;			// 74HC164 时钟输入
-uint show_data;			// 接收数据
+uchar show_data;			// 接收数据
 uchar code tab[]={0x81,0xD7,0xC8,0xC2,0x96,0xA2,0xA0,0xC7,0x80,0x82,0xff};		// 数码管段选数组	数字0~9和全灭
 
 /**********************************************************
@@ -85,11 +84,11 @@ void UartService() interrupt 4
 {
 	uchar temp;
 	temp = SBUF;	// 接收数据
-	show_data = temp;
 	RI = 0;			// 清除接收中断标志位
-	SBUF = temp;	// 查看发送次数,验证串行发送
-	while(!TI);		// 等待发送完成
-	TI = 0;			// 清除发送中断标志位
+	show_data = temp;
+//	SBUF = show_data;
+//	while(!TI);		// 等待发送完成
+//	TI = 0;			// 清除发送中断标志位
 }
 
 
@@ -103,6 +102,6 @@ void main()
 	while(1)
 	{
 		SendByte_74HC164(Hex2Char(show_data));
-		delay_ms(200);
+		delay_ms(20);
 	}
 }
