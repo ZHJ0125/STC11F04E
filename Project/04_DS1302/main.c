@@ -49,14 +49,14 @@ void delay(unsigned int mstime)
 void DS1302Write(uchar add,uchar wdata)
 {
 	uchar a;
-	//wdata = hex(wdata);		// 转换为BCD码
+	//wdata = hex(wdata);					// 转换为BCD码
 	RST=0;									// 拉低RST引脚,终止数据传输
 	SCLK=0;									// 拉低SCLK引脚,清零时钟线
 	RST=1;									// 拉高RST引脚,所有数据传输都要拉高RST脚,启动控制逻辑
 	//先写入控制字节
 	for(a=0; a<8; a++)
 	{
-			IO= add & 0x01;			// IO引脚准备好要写入的1位数据
+			IO= add & 0x01;					// IO引脚准备好要写入的1位数据
 			SCLK=1;							// SCLK上升沿,1位数据从IO脚写入,低位先写入
 			add>>=1;						// 数据右移1位
 			SCLK=0;							// 拉低SCLK,为下次写入准备,循环8次写入1字节
@@ -104,12 +104,12 @@ uchar DS1302Read(uchar add)
 		rdata >>= 1;
 		SCLK = 0;										// 制造一个下降沿,读取数据
 		if(IO)
-		{														// 如果读到1
-			rdata |= 0x80;						// 把最高位置为1,记录到rdata中
+		{												// 如果读到1
+			rdata |= 0x80;								// 把最高位置为1,记录到rdata中
 		}
 	}
 	RST=0;												// 拉低RST
-	//return dec(d);        			// 读取的数据转换成十进制
+	//return dec(d);        							// 读取的数据转换成十进制
 	return rdata;
 }
 
@@ -127,12 +127,13 @@ uchar DS1302Read(uchar add)
 void ds1302_init()
 {
    uchar k;
-   DS1302Write(0x8e,0x00);  		// 禁止写保护，即允许数据写入
+   DS1302Write(0x8e,0x00);  				// 禁止写保护，即允许数据写入
+	if(DS1302Read(0x81) & 0x80)				// 掉电检测,时钟停止标志位
    for(k=0;k<7;k++)							// 写入7个字节的时钟信号：秒分时日月周年
    {
      DS1302Write(write_addr[k],time[k]);
    }
-   DS1302Write(0x8e,0x80);  		// 打开写保护,禁止数据写入
+   DS1302Write(0x8e,0x80);  				// 打开写保护,禁止数据写入
 }
 
 
@@ -167,7 +168,7 @@ void SendByte_74HC164(uchar byte)
 	num=table1[byte];
 	for(c=0; c<8; c++)
 	{
-		DAT=num&0x01;		// P3^0 --> 0000 000x
+		DAT=num&0x01;			// P3^0 --> 0000 000x
 		CLK=0;					// 制造一个上升沿
 		CLK=1;
 		num>>=1;				// 将数据发送到寄存器
@@ -187,7 +188,8 @@ void SendByte_74HC164(uchar byte)
 ***********************************************************/
 void display()									// 显示程序
 {
-	uchar A0,A1,A2,A3,A4,A5,A6,A7,A8,A9;
+	uchar A0,A1,A2,A3,A4,A5,A6,A7;
+//	uchar A8,A9;
 	A0 = dec(time[0])/10;					// A0-->秒十位
 	A1 = dec(time[0])%10;					// A1-->秒个位
 	A2 = dec(time[1])/10;					// A2-->分十位
@@ -196,11 +198,11 @@ void display()									// 显示程序
 	A5 = dec(time[2])%10;					// A5-->时个位
 	A6 = dec(time[3])/10;					// A6-->日十位
 	A7 = dec(time[3])%10;					// A7-->日个位
-	A8 = dec(time[3])/10;					// A8-->月十位
-	A9 = dec(time[3])%10;					// A9-->月个位
+//	A8 = dec(time[4])/10;					// A8-->月十位
+//	A9 = dec(time[4])%10;					// A9-->月个位
 	
-	// DP = 0;										// 点分割
-	flag ++;											// 时间点闪烁计数
+	// DP = 0;								// 点分割
+	flag ++;								// 时间点闪烁计数
 	if(flag >= 134)
 	{
 		DP = ~DP;
@@ -234,7 +236,7 @@ void display()									// 显示程序
 // 主函数功能：设置初始时间为“2019年10月4日18:55:00”并不断显示时间
 void main()
 {
-	ds1302_init();					// DS1302日期初始化
+	ds1302_init();						// DS1302日期初始化
 	while(1)
 	{
 		read_time();					// DS1302读取当前时间
