@@ -14,8 +14,8 @@ sbit DP = P3^7;					// 时间分割点
 sbit DP1 = P3^5;				// 温度小数点
 sbit KEY = P3^2;				// 按键INT0
 uint flag = 0;					// 时间小数点闪烁计数
-uint temp;							// 温度变量
-uint DISP_FLAG = 1;			// 功能显示标志位
+uint temp;						// 温度变量
+uint DISP_FLAG = 1;				// 功能显示标志位
 
 uchar code write_addr[]={0x80,0x82,0x84,0x86,0x88,0x8a,0x8c};		// DS1302写地址
 uchar code read_addr[]={0x81,0x83,0x85,0x87,0x89,0x8b,0x8d};		// DS1302读地址
@@ -52,7 +52,6 @@ void delay(unsigned int mstime)
 void Delay50ms()		//@11.0592MHz
 {
 	unsigned char i, j, k;
-
 	_nop_();
 	_nop_();
 	i = 3;
@@ -81,7 +80,7 @@ void SendByte_74HC164(uchar byte)
 	num=table1[byte];
 	for(c=0; c<8; c++)
 	{
-		DAT=num&0x01;		// P3^0 --> 0000 000x
+		DAT=num&0x01;			// P3^0 --> 0000 000x
 		CLK=0;					// 制造一个上升沿
 		CLK=1;
 		num>>=1;				// 将数据发送到寄存器
@@ -95,22 +94,22 @@ void SendByte_74HC164(uchar byte)
 *  修改日期：2019-9-9
 *  修改人：ZhangHJ
 *  说明：1. 对于单片机: 单片机首先发出480-960us的低电平脉冲,
-*				 		释放总线为高电平(上拉电阻拉高),在随后的480us进行检测,
+*						释放总线为高电平(上拉电阻拉高),在随后的480us进行检测,
 *				 		如果出现低电平，说明器件应答正常.B
-*				 2. 对于DS18B20: 上电后就检测是否有480/960us的低电平脉冲,
-*						如果有低电平,在总线释放之后，等待15-60us,
+*		2. 对于DS18B20: 上电后就检测是否有480/960us的低电平脉冲,
+*						s如果有低电平,在总线释放之后，等待15-60us,
 *						将电平拉低60-240us,告诉主机已经准备好.
 ***********************************************************/
-uchar dsreset(void)					// send reset and initialization command
+uchar dsreset(void)							// send reset and initialization command
 {
   uint i;
-  DS = 0;										// 先将端口拉低
-  i=120;										// 维持低电平状态480us~960us
+  DS = 0;									// 先将端口拉低
+  i=120;									// 维持低电平状态480us~960us
   while(i>0)i--;
-  DS = 1;										// 然后释放总线(将总线拉高),若DS18B20做出反应,将会将在15us~60us后将总线拉低
+  DS = 1;									// 然后释放总线(将总线拉高),若DS18B20做出反应,将会将在15us~60us后将总线拉低
 	// 等待DS18B20响应
 	i = 0;
-	while(DS)									// 在DS高电平时等待
+	while(DS)								// 在DS高电平时等待
 	{
 		i++;
 		if(i > 50000)						// 等待时间大于60us,说明响应失败
@@ -134,16 +133,16 @@ uchar dsreset(void)					// send reset and initialization command
 *				 5.接下来进行延时等待采样周期完成。
 *				 详见DS18B20资料2.8.3.1读/写时间片
 ***********************************************************/
-bit tmpreadbit(void)				// read a bit data
+bit tmpreadbit(void)					// read a bit data
 {
 	uint i;
-	bit dat;									// 定义位数据 (dat = 0 or 1)
-	DS = 0;										// 先将端口拉低
-	_nop_();									// 延时 2us ,要求至少保持1us
-	DS = 1;										// 再将端口拉高
-	i=8;while(i>0)i--;				// 等待DS数据稳定,要求的至少延时15us以上
-	dat = DS;									// 数据传输
-	i=15;while(i>0)i--;				// 等待数据采样周期完成,要求不低于60us
+	bit dat;							// 定义位数据 (dat = 0 or 1)
+	DS = 0;								// 先将端口拉低
+	_nop_();							// 延时 2us ,要求至少保持1us
+	DS = 1;								// 再将端口拉高
+	i=8;while(i>0)i--;					// 等待DS数据稳定,要求的至少延时15us以上
+	dat = DS;							// 数据传输
+	i=15;while(i>0)i--;					// 等待数据采样周期完成,要求不低于60us
 	return (dat);
 }
 
@@ -159,14 +158,14 @@ bit tmpreadbit(void)				// read a bit data
 *				 4.效果是 j 先读入的数据,放到了dat的低位,读8次正好是1byte.
 *				 5.最后返回读到的字节数据
 ***********************************************************/
-uchar tmpread(void)					// read a byte date
+uchar tmpread(void)						// read a byte date
 {
 	uchar i,j,dat;
-  dat = 0;									// 初始化数据变量为 0
-  for(i=1;i<=8;i++)					// 循环 8 次,调用tmpreadbit函数,读 8bit 数据
+  dat = 0;								// 初始化数据变量为 0
+  for(i=1;i<=8;i++)						// 循环 8 次,调用tmpreadbit函数,读 8bit 数据
   {
-    j = tmpreadbit();				// 读出的数据暂存到 j
-    dat = (j<<7)|(dat>>1);	// 效果是 j 先读入的数据,放到了dat的低位,读8次正好是1byte.
+    j = tmpreadbit();					// 读出的数据暂存到 j
+    dat = (j<<7)|(dat>>1);				// 效果是 j 先读入的数据,放到了dat的低位,读8次正好是1byte.
   }
   return(dat);							// 返回读到的字节
 }
@@ -184,7 +183,7 @@ uchar tmpread(void)					// read a byte date
 *				 5.循环执行2、3、4操作8次,写入1字节数据
 *				 详见18B20资料“2.8.3.1读/写时间片”章节
 ***********************************************************/
-void tmpwritebyte(uchar dat)   //write a byte to ds18b20
+void tmpwritebyte(uchar dat)   			//write a byte to ds18b20
 {
   uint i;
   uchar j;
@@ -196,9 +195,9 @@ void tmpwritebyte(uchar dat)   //write a byte to ds18b20
     if(testb)     						// write 1
     {
       DS=0;
-      i=8;while(i>0)i--;;			// 延时要求15~60us内
+      i=8;while(i>0)i--;;				// 延时要求15~60us内
       DS=1;
-      i=15;while(i>0)i--;			// 要求不低于60us
+      i=15;while(i>0)i--;				// 要求不低于60us
     }
     else
     {
@@ -249,7 +248,7 @@ void tmpchange(void)					// DS18B20 begin change
 *				 7.返回温度数据
 *				 详见18B20资料“2.8.3.1存储器操作命令”章节
 ***********************************************************/
-uint tmp()										// get the temperature
+uint tmp()								// get the temperature
 {
   float tt;
   uchar high,low;
@@ -266,7 +265,7 @@ uint tmp()										// get the temperature
   low=tmpread();
   high=tmpread();
   temp=high;
-  temp<<=8;										// two byte compose a int variable
+  temp<<=8;								// two byte compose a int variable
   temp=temp|low;
   tt=temp*0.0625;
   temp=tt*10+0.5;
@@ -288,13 +287,13 @@ void Display_Tmp(uint temp)				// 显示程序
 	uchar A1,A2,A2t,A3,ser;
 	ser=temp/10;
 	SBUF=ser;
-	A1=temp/100;								// A1 --> 百位
-	A2t=temp%100;								// A2t --> 后两位
-	A2=A2t/10;									// A2 --> 十位
-	A3=A2t%10;									// A3 --> 个位
+	A1=temp/100;						// A1 --> 百位
+	A2t=temp%100;						// A2t --> 后两位
+	A2=A2t/10;							// A2 --> 十位
+	A3=A2t%10;							// A3 --> 个位
 	
-	DP1 = 0;										// 温度小数点开启
-	DP = 1;											// 时间小数点关闭
+	DP1 = 0;							// 温度小数点开启
+	DP = 1;								// 时间小数点关闭
    
 	// 控制数码管显示温度数值
 	P1 |= 0x0f;
@@ -334,14 +333,14 @@ void Display_Tmp(uint temp)				// 显示程序
 void DS1302Write(uchar add,uchar wdata)
 {
 	uchar a;
-	//wdata = hex(wdata);		// 转换为BCD码
+	//wdata = hex(wdata);					// 转换为BCD码
 	RST=0;									// 拉低RST引脚,终止数据传输
 	SCLK=0;									// 拉低SCLK引脚,清零时钟线
 	RST=1;									// 拉高RST引脚,所有数据传输都要拉高RST脚,启动控制逻辑
 	//先写入控制字节
 	for(a=0; a<8; a++)
 	{
-			IO= add & 0x01;			// IO引脚准备好要写入的1位数据
+			IO= add & 0x01;					// IO引脚准备好要写入的1位数据
 			SCLK=1;							// SCLK上升沿,1位数据从IO脚写入,低位先写入
 			add>>=1;						// 数据右移1位
 			SCLK=0;							// 拉低SCLK,为下次写入准备,循环8次写入1字节
@@ -371,15 +370,15 @@ void DS1302Write(uchar add,uchar wdata)
 uchar DS1302Read(uchar add)
 {
 	uchar a, rdata=0;
-	RST = 0;											// 拉低RST引脚,终止数据传输
-	SCLK = 0;											// 拉低SCLK引脚,清零时钟线
-	RST = 1;											// 拉高RST引脚,启动控制逻辑
+	RST = 0;								// 拉低RST引脚,终止数据传输
+	SCLK = 0;								// 拉低SCLK引脚,清零时钟线
+	RST = 1;								// 拉高RST引脚,启动控制逻辑
 	//发送控制字节
 	for(a=0; a<8; a++)
 	{
 		SCLK = 0;
 		IO = add & 0x01;
-		SCLK = 1;										// 制造一个上升沿,写入地址
+		SCLK = 1;							// 制造一个上升沿,写入地址
 		add >>= 1;
 	}
 	//读1字节数据
@@ -387,14 +386,14 @@ uchar DS1302Read(uchar add)
 	{
 		SCLK = 1;
 		rdata >>= 1;
-		SCLK = 0;										// 制造一个下降沿,读取数据
+		SCLK = 0;							// 制造一个下降沿,读取数据
 		if(IO)
-		{														// 如果读到1
-			rdata |= 0x80;						// 把最高位置为1,记录到rdata中
+		{									// 如果读到1
+			rdata |= 0x80;					// 把最高位置为1,记录到rdata中
 		}
 	}
-	RST=0;												// 拉低RST
-	//return dec(d);        			// 读取的数据转换成十进制
+	RST=0;									// 拉低RST
+	//return dec(d);        				// 读取的数据转换成十进制
 	return rdata;
 }
 
@@ -412,12 +411,13 @@ uchar DS1302Read(uchar add)
 void ds1302_init()
 {
    uchar k;
-   DS1302Write(0x8e,0x00);  		// 禁止写保护，即允许数据写入
+   DS1302Write(0x8e,0x00);  				// 禁止写保护，即允许数据写入
+	if(DS1302Read(0x81) & 0x80)				// 掉电检测,时钟停止标志位
    for(k=0;k<7;k++)							// 写入7个字节的时钟信号：秒分时日月周年
    {
      DS1302Write(write_addr[k],time[k]);
    }
-   DS1302Write(0x8e,0x80);  		// 打开写保护,禁止数据写入
+   DS1302Write(0x8e,0x80);  				// 打开写保护,禁止数据写入
 }
 
 
@@ -449,7 +449,8 @@ void read_time()
 ***********************************************************/
 void Display_Time()							// 显示程序
 {
-	uchar A0,A1,A2,A3,A4,A5,A6,A7,A8,A9;
+	uchar A0,A1,A2,A3,A4,A5,A6,A7;
+//	uchar A8,A9;
 	A0 = dec(time[0])/10;					// A0-->秒十位
 	A1 = dec(time[0])%10;					// A1-->秒个位
 	A2 = dec(time[1])/10;					// A2-->分十位
@@ -458,11 +459,11 @@ void Display_Time()							// 显示程序
 	A5 = dec(time[2])%10;					// A5-->时个位
 	A6 = dec(time[3])/10;					// A6-->日十位
 	A7 = dec(time[3])%10;					// A7-->日个位
-	A8 = dec(time[3])/10;					// A8-->月十位
-	A9 = dec(time[3])%10;					// A9-->月个位
+//	A8 = dec(time[4])/10;					// A8-->月十位
+//	A9 = dec(time[4])%10;					// A9-->月个位
 	
-	DP1 = 1;											// 温度小数点关闭
-	flag ++;											// 时间点闪烁计数
+	DP1 = 1;								// 温度小数点关闭
+	flag ++;								// 时间点闪烁计数
 	if(flag >= 134)
 	{
 		DP = ~DP;
@@ -518,10 +519,10 @@ void configExtInt0()
 void extInt0() interrupt 0
 {
 	EA = 0;							// 关闭总中断
-	Delay50ms();				// 延时防抖
+	Delay50ms();					// 延时防抖
 	if(KEY == 0)
 	{
-		P1 |= 0x0f;				// 关闭位选,清屏
+		P1 |= 0x0f;					// 关闭位选,清屏
 		DISP_FLAG = ~DISP_FLAG;		// 显示其他功能
 	}
 	EA = 1;							// 开启总中断
@@ -533,19 +534,19 @@ void extInt0() interrupt 0
 void main()
 {
 	uchar a;
-	configExtInt0();									// 配置外部中断0
-	ds1302_init();										// DS1302日期初始化
+	configExtInt0();								// 配置外部中断0
+	ds1302_init();									// DS1302日期初始化
 	while(1)
 	{
 		if(DISP_FLAG == 1)							// 时间显示
 		{
-			read_time();									// DS1302读取当前时间
-			Display_Time();								// 显示当前时间
+			read_time();							// DS1302读取当前时间
+			Display_Time();							// 显示当前时间
 		}
-		else														// 温度显示
+		else										// 温度显示
 		{
-				tmpchange();								// 温度转换
-				for(a=40;a>0;a--)						// 延时,保持连续显示
+				tmpchange();						// 温度转换
+				for(a=40;a>0;a--)					// 延时,保持连续显示
 				{
 					Display_Tmp(tmp());				// 进行温度转换和数值显示
 				}
