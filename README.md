@@ -6,7 +6,7 @@
 
 # STC11F04E
 
-> 欢迎查看 [本项目GitHub Pages页面](https://zhj0125.github.io/STC11F04E/)
+> 欢迎查看 ~~[本项目GitHub Pages页面](https://zhj0125.github.io/STC11F04E/)~~ (页面已失效)
 
 > 如果你测试了我的代码，觉得不错的话请给个 Star ！你的 Star 是我持续更新的动力, 谢谢 😄.
 
