@@ -1,12 +1,9 @@
 [![Creator](https://img.shields.io/badge/Creator-ZhangH.J.-success)](https://zhj0125.github.io/)
-[![Total visitor](https://visitor-count-badge.herokuapp.com/total.svg?repo_id=${https://github.com/ZHJ0125/STC11F04E})](https://github.com/ZHJ0125/STC11F04E/)
 ![language](https://img.shields.io/badge/language-C-9cf.svg)
 [![last-commit](https://img.shields.io/github/last-commit/ZHJ0125/STC11F04E)](https://github.com/ZHJ0125/STC11F04E/commits/master)
 ![license](https://img.shields.io/github/license/ZHJ0125/STC11F04E)
 
 # STC11F04E
-
-> 欢迎查看 ~~[本项目GitHub Pages页面](https://zhj0125.github.io/STC11F04E/)~~ (页面已失效)
 
 > 如果你测试了我的代码，觉得不错的话请给个 Star ！你的 Star 是我持续更新的动力, 谢谢 😄.
 
